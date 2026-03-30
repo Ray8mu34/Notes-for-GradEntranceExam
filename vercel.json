@@ -1,4 +1,10 @@
 {
-  "build command": "hugo",
-  "output directory": "public"
+  "version": 2,
+  "builds": [
+    {
+      "src": "config.toml",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "public" }
+    }
+  ]
 }
