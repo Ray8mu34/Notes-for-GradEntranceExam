@@ -29,21 +29,21 @@ $$\left\{
 - **和差角**
 $$
 \begin{align*}
-sin(\alpha \pm \beta) &= sin\alpha cos\beta \pm cos\alpha sin\beta \\ncos(\alpha \pm \beta) &= cos\alpha cos\beta \mp sin\alpha sin\beta \\ntan(\alpha \pm \beta) &= \frac{tan\alpha \pm tan\beta}{1 \mp tan\alpha tan\beta}
+sin(\alpha \pm \beta) &= sin\alpha cos\beta \pm cos\alpha sin\beta \\\cos(\alpha \pm \beta) &= cos\alpha cos\beta \mp sin\alpha sin\beta \\\tan(\alpha \pm \beta) &= \frac{tan\alpha \pm tan\beta}{1 \mp tan\alpha tan\beta}
 \end{align*}
 $$
 
 - **倍角公式**
 $$
 \begin{align*}
-sin 2\theta &= 2 sin\theta cos\theta \\ncos 2\theta &= 1 - 2 sin^2\theta \\ntan 2\theta &= \frac{2 tan\theta}{1 - tan^2\theta}
+sin 2\theta &= 2 sin\theta cos\theta \\\cos 2\theta &= 1 - 2 sin^2\theta \\\tan 2\theta &= \frac{2 tan\theta}{1 - tan^2\theta}
 \end{align*}
 $$
 
 - **半角公式**
 $$
 \begin{align*}
-sin \frac{\theta}{2} &= \pm \sqrt{\frac{1 - cos\theta}{2}} \\ncos \frac{\theta}{2} &= \pm \sqrt{\frac{1 + cos\theta}{2}} \\ntan \frac{\theta}{2} &= \pm \sqrt{\frac{1 - cos\theta}{1 + cos\theta}} 
+sin \frac{\theta}{2} &= \pm \sqrt{\frac{1 - cos\theta}{2}} \\\cos \frac{\theta}{2} &= \pm \sqrt{\frac{1 + cos\theta}{2}} \\\tan \frac{\theta}{2} &= \pm \sqrt{\frac{1 - cos\theta}{1 + cos\theta}} 
 = \frac{sin\theta}{1 + cos\theta} 
 = \frac{1 - cos\theta}{sin\theta}
 \end{align*}
@@ -52,20 +52,20 @@ $$
 - **降幂公式**
 $$
 \begin{align*}
-sin^2\theta &= \frac{1 - cos 2\theta}{2} \\ncos^2\theta &= \frac{1 + cos 2\theta}{2} \\ntan^2\theta &= \frac{1 - cos 2\theta}{1 + cos 2\theta}
+sin^2\theta &= \frac{1 - cos 2\theta}{2} \\\cos^2\theta &= \frac{1 + cos 2\theta}{2} \\\tan^2\theta &= \frac{1 - cos 2\theta}{1 + cos 2\theta}
 \end{align*}
 $$
 - **和差化积**
 $$
 \begin{align*}
-sin\alpha + sin\beta &= 2 sin\frac{\alpha+\beta}{2} cos\frac{\alpha-\beta}{2} \\nsin\alpha - sin\beta &= 2 cos\frac{\alpha+\beta}{2} sin\frac{\alpha-\beta}{2} \\ncos\alpha + cos\beta &= 2 cos\frac{\alpha+\beta}{2} cos\frac{\alpha-\beta}{2} \\ncos\alpha - cos\beta &= -2 sin\frac{\alpha+\beta}{2} sin\frac{\alpha-\beta}{2}
+sin\alpha + sin\beta &= 2 sin\frac{\alpha+\beta}{2} cos\frac{\alpha-\beta}{2} \\\sin\alpha - sin\beta &= 2 cos\frac{\alpha+\beta}{2} sin\frac{\alpha-\beta}{2} \\\cos\alpha + cos\beta &= 2 cos\frac{\alpha+\beta}{2} cos\frac{\alpha-\beta}{2} \\\cos\alpha - cos\beta &= -2 sin\frac{\alpha+\beta}{2} sin\frac{\alpha-\beta}{2}
 \end{align*}
 $$
 
 - **积化和差**
 $$
 \begin{align*}
-sin\alpha cos\beta &= \frac{1}{2} [sin(\alpha+\beta) + sin(\alpha-\beta)] \\ncos\alpha sin\beta &= \frac{1}{2} [sin(\alpha+\beta) - sin(\alpha-\beta)] \\ncos\alpha cos\beta &= \frac{1}{2} [cos(\alpha+\beta) + cos(\alpha-\beta)] \\nsin\alpha sin\beta &= -\frac{1}{2} [cos(\alpha+\beta) - cos(\alpha-\beta)]
+sin\alpha cos\beta &= \frac{1}{2} [sin(\alpha+\beta) + sin(\alpha-\beta)] \\\cos\alpha sin\beta &= \frac{1}{2} [sin(\alpha+\beta) - sin(\alpha-\beta)] \\\cos\alpha cos\beta &= \frac{1}{2} [cos(\alpha+\beta) + cos(\alpha-\beta)] \\\sin\alpha sin\beta &= -\frac{1}{2} [cos(\alpha+\beta) - cos(\alpha-\beta)]
 \end{align*}
 $$
 
@@ -78,7 +78,7 @@ $$
 - **辅助角**
 $$
 \begin{align*}
-a sin\theta + b cos\theta &= \sqrt{a^2+b^2} sin(\theta + \varphi) \\ntan\varphi &= \frac{b}{a} \quad (\text{相位角})
+a sin\theta + b cos\theta &= \sqrt{a^2+b^2} sin(\theta + \varphi) \\\tan\varphi &= \frac{b}{a} \quad (\text{相位角})
 \end{align*}
 $$
 
@@ -278,7 +278,7 @@ $$\begin{aligned}
 (1+x)^\alpha &= 1+\alpha x  +\dfrac{\alpha (\alpha-1)}{2}x^{2}\\
 \\narcsin x &= \sum \frac{(2k-1)!!}{(2k)!!} \frac{x^{2k+1}}{2k+1} + R_{2k+1}(x) \\
 arcsin x &= x+\frac{x^{3}}{6}+\frac{3x^{5}}{40}\\
-\\ntan x &= \sum_{n=1}^{\infty} \frac{B_{2n}(-4)^n(1-4^n)}{(2n)!} x^{2n-1} + R_{2n}(x)\\ntan x &= x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + \frac{62x^9}{2835} + \cdots + R_{2n}(x)
+\\\tan x &= \sum_{n=1}^{\infty} \frac{B_{2n}(-4)^n(1-4^n)}{(2n)!} x^{2n-1} + R_{2n}(x)\\\tan x &= x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + \frac{62x^9}{2835} + \cdots + R_{2n}(x)
 \end{aligned}$$
 
 ##### 应用
