@@ -5,9 +5,40 @@
     max-width: 1400px;
   }
   
+  /* 文章内容区域布局 */
+  .post-single {
+    position: relative;
+  }
+  
+  /* 文章头部样式 */
+  .post-header {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  /* 内容区域 - 包含目录和正文 */
+  .post-content-area {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  
+  /* 目录样式调整 */
+  .toc {
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    width: 250px;
+    flex-shrink: 0;
+  }
+  
   /* 确保文章内容区域有足够宽度 */
   .post-content {
-    max-width: 1200pt;
+    flex: 1;
+    min-width: 0;
+    max-width: 1000px;
     overflow-x: auto;
   }
   
@@ -18,16 +49,20 @@
     overflow-x: auto;
   }
   
-  /* 目录样式调整 */
-  .toc {
-    position: sticky;
-    top: 20px;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-  }
-  
   /* 响应式调整 */
   @media (max-width: 1024px) {
+    .post-content-area {
+      flex-direction: column;
+    }
+    
+    .toc {
+      position: relative;
+      top: 0;
+      max-height: none;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
     .post-content {
       max-width: none;
     }
