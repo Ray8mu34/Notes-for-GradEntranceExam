@@ -30,7 +30,7 @@ $$\left{
 &lt;p&gt;&lt;strong&gt;和差角&lt;/strong&gt;
 $$
 \begin{align*}
-sin(\alpha \pm \beta) &amp;amp;= sin\alpha cos\beta \pm cos\alpha sin\beta \ncos(\alpha \pm \beta) &amp;amp;= cos\alpha cos\beta \mp sin\alpha sin\beta \ntan(\alpha \pm \beta) &amp;amp;= \frac{tan\alpha \pm tan\beta}{1 \mp tan\alpha tan\beta}
+sin(\alpha \pm \beta) &amp;amp;= sin\alpha cos\beta \pm cos\alpha sin\beta \\cos(\alpha \pm \beta) &amp;amp;= cos\alpha cos\beta \mp sin\alpha sin\beta \\tan(\alpha \pm \beta) &amp;amp;= \frac{tan\alpha \pm tan\beta}{1 \mp tan\alpha tan\beta}
 \end{align*}
 $$&lt;/p&gt;</description></item><item><title>控制理论习题</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/</guid><description>&lt;h3 id="数学模型"&gt;数学模型&lt;/h3&gt;
 &lt;h4 id="建模"&gt;建模&lt;/h4&gt;
