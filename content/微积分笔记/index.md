@@ -949,3 +949,405 @@ $$\mathbf{grad}f=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial 
   \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
   P & Q & R
   \end{vmatrix}$$
+	展开式：
+  $$\left( \frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z} \right)\vec{i} - \left( \frac{\partial R}{\partial x} - \frac{\partial P}{\partial z} \right)\vec{j} + \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right)\vec{k}$$
+
+
+
+### 矢量代数与空间解析几何
+
+#### 基础知识
+
+- 方向角：$\cos\alpha=\dfrac{a_x}{|\vec{a}|}, \cos\beta=\dfrac{a_y}{|\vec{a}|},\cos\gamma=\dfrac{a_z}{|\vec{a}|}$
+
+
+三种关系角
+- **线线角**：方向向量$\vec{s_1},\vec{s_2}$间夹角$\theta$：$\cos\theta=\dfrac{|\vec{s_1}\cdot\vec{s_2}|}{|\vec{s_1}||\vec{s_2}|}$
+* **线面角**：方向$\vec{s}$与法向量$\vec{n}$夹角$\varphi$：$\sin\varphi=\dfrac{|\vec{s}\cdot\vec{n}|}{|\vec{s}||\vec{n}|}$
+*  **二面角**：两平面$\Pi_1,\Pi_2$的法向量$\vec{n_1},\vec{n_2}$夹角$\theta$：$\cos\theta=\dfrac{|\vec{n_1}\cdot\vec{n_2}|}{|\vec{n_1}||\vec{n_2}|}$
+  
+
+两种距离
+* **点线距**：点$P_1$到直线$L$（过$P_0$方向$\vec{s}$）：$d=\dfrac{|\overrightarrow{P_0P_1}\times\vec{s}|}{|\vec{s}|}$
+* **点面距**：点$P(x_0,y_0,z_0)$到平面$Ax+By+Cz+D=0$：$d=\dfrac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}$
+
+
+**常见二次曲面**
+
+| 大类                 | 正惯性指数 (p) | 负惯性指数 (q) | 曲面类型               | 标准方程                                                      | 记忆口诀/特征         |
+| :----------------- | :-------- | :-------- | :----------------- | :-------------------------------------------------------- | :-------------- |
+| **第一类<br>(p+q=3)** | 3         | 0         | **椭球面**            | $\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$ | 符号全正，封闭的“蛋形”曲面  |
+|                    | 2         | 1         | **单叶双曲面**          | $\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$ | 单还是双，看**负惯性指数** |
+|                    | 1         | 2         | **双叶双曲面**          | $\frac{x^2}{a^2} - \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$ |                 |
+| **第二类<br>(p+q=2)** | 2         | 0         | **椭圆抛物面**          | $\frac{x^2}{a^2} + \frac{y^2}{b^2} = z$                   | 椭圆              |
+|                    | 1         | 1         | **双曲抛物面<br>(马鞍面)** | $\frac{x^2}{a^2} - \frac{y^2}{b^2} = z$                   | 双曲线             |
+| 第三类<br>            |           |           | 二次锥面               | $\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=0$       | 过原点，齐次方程        |
+
+#### 曲线曲面
+
+##### 曲线
+
+研究曲线的切向量、切线、**法平面**（以曲线切向量为法向量）
+
+- 参数方程：$\Gamma:\begin{cases}x=x(t)\\y=y(t)\\z=z(t)\end{cases}$ ，切向量：$\vec{T}=(x'(t_0),y'(t_0),z'(t_0))$
+
+- 曲面交线表示法：$\left\{\begin{array}{l} F(x,y,z)=0 \\ G(x,y,z)=0 \end{array}\right.$，切向量是两曲面法向量的叉积$$\vec{\tau} = \left.\begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ F'_x & F'_y & F'_z \\ G'_x & G'_y & G'_z \end{vmatrix}\right|_{P_0} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ \frac{\partial F}{\partial x} & \frac{\partial F}{\partial y} & \frac{\partial F}{\partial z} \\ \frac{\partial G}{\partial x} & \frac{\partial G}{\partial y} & \frac{\partial G}{\partial z} \end{vmatrix}_{P_0}$$
+
+##### 曲面
+
+研究曲面的法向量、法线、切平面
+
+- 一般表示：$F(x,y,z)=0$
+	- 其实这就是一个数量场
+	- 法向量就是梯度：$\vec{n}=\mathbf{grad}F=\left(\frac{\partial F}{\partial x},\frac{\partial F}{\partial y},\frac{\partial F}{\partial z}\right)=\nabla F$
+
+- 显示表示：$z=f(x,y)$
+	- 可化为$F(x,y,z)=f(x,y)−z=0$
+	- 法向量：$\vec{n}=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},-1 \right)$
+
+
+##### 旋转曲面求解
+
+![[file-20251116171354476.png]]
+
+##### 锥面求解
+
+锥面是一个大类，它由三部分组成
+- 顶点：一个固定点，是所有母线的公共端点。
+- 准线：一条曲线（可以是平面曲线或空间曲线），母线沿着准线滑动。
+- 母线：从顶点到准线上任意一点的直线，这些直线的集合形成锥面。
+
+给定顶点和准线，就可以确定锥面的方程。根据准线的不同，锥面分为：圆锥、椭圆锥、抛物锥……
+
+![[4E308F074C35DB759AD795F0D994EB4E.png]]
+
+##### 投影问题
+
+- 点在直线的投影：
+	- 设投影点$P^{'}$的坐标，只含有一个变量，利用$\vec{PP^{'}} \perp\vec{v}$ 求解
+- 点到平面的投影：
+	- 核心是在法向量方向，将点平移到平面上
+	- 取平面上一点$M$，求出$\vec{MP}$ 在 $\vec{n}$ 上的投影 $d$，这就是平移长度
+	- 则$$
+P' = P - d \cdot \vec{n} = (x_1 - A \cdot d, y_1 - B \cdot d, z_1 - C \cdot d)
+$$
+	- 方法二：求过点，且垂直于平面的直线，则二者交点即为投影点
+
+- 直线在平面的投影
+	- 方法一是求出两个投影点，就得到
+	- 方法二：求过直线，且垂直于平面的新平面，则二者交线即为投影直线
+
+- 点、曲线、在坐标平面的投影：消去方程中的$z$，就是在$oxy$的投影
+	- $\cases{F(x,y,z)=0\\ G(x,y,z)=0} \to \cases{\Gamma(x,y)=0\\z=0}$
+
+- 曲面在坐标平面的投影：**不是**简单消去 $z$就能得到的
+	- 投影区域的边界由曲面上那些点的投影构成，这些点处的切平面是**垂直的**
+	- 从而，首先先**找到边界曲线**，求法向量，令其与坐标平面的法向量垂直$$\cases{F(x,y,z)=0\\ F_{z}(x,y,z)=0}$$
+	- 则这部分曲线，求投影，就是投影区域的边界，从中消去$z$即可
+	- 得到的是投影区域的**边界**，而不是整个投影区域，需要自己辨别
+
+### 微分方程
+
+
+一阶
+- 一阶变系数：$\dfrac{dy}{dx} + P(x)y = Q(x)$，注意**右侧只与$x$有关**的部分，齐次方程是含$y$的部分
+	- 常数变易法
+- 伯努利方程：$\dfrac{dy}{dx} + P(x)y = Q(x)y^n \quad (n \neq 0,1)$，注意**右侧含有$y$** 且不是$1$次（0次就退化为一阶变系数）
+	- 解法：同除以$y^n$，令 $z = y^{1-n}$  
+- 齐次方程：$\dfrac{dy}{dx} = f\left(\frac{y}{x}\right)$，也可以是$\frac{dx}{dy}$，看哪个好求
+- 全微分方程，没有太多可说的
+- 积分因子法，貌似不在考纲， 寻求积分因子 $\mu(x)$或者$\mu(y)$，使得$\mu M dx + \mu N dy = 0$为全微分
+- 实在以上方法都做不出来，**考虑求$\dfrac{dx}{dy}$**
+- 换元法：一般按照题目的提示来
+
+
+二阶变系数
+- 可降阶：$y^{'}=p, y^{''}=p \dfrac{dp}{dy}$
+- 欧拉方程：$x^2y'' + pxy' + qy = f(x)$
+	- 令$x=e^{t}$
+
+
+二阶**常系数**齐次：
+
+| 根的类型            | 通解形式                                                                 |
+|---------------------|--------------------------------------------------------------------------|
+| 相异实根 $r_1, r_2$   | $y = C_1e^{r_1x} + C_2e^{r_2x}$                                           |
+| 重根 $r$            | $y = (C_1 + C_2x)e^{rx}$                                                 |
+| 共轭复根 $\alpha \pm \beta i$ | $y = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)$                         |
+| 重共轭复根 $\alpha \pm \beta i$ | $y = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x + C_3 x\cos\beta x + C_4 x\sin\beta x)$ |
+
+| 非齐次项 $f(x)$ 形式                                               | 特解 $y_p$ 预设形式                                                                  | $k$ 的取值条件                                                            |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| $P_n(x)$（$n$ 次多项式）                                           | $x^k Q_n(x)$                                                                   | $k=0$：特征根中无 0<br>$k=1$：特征根有单根 0<br>$k=2$：特征根有重根 0                    |
+| $P_n(x) e^{\alpha x}$                                        | $x^k Q_n(x) e^{\alpha x}$                                                      | $k=0$：$\alpha$ 不是特征根<br>$k=1$：$\alpha$ 是单特征根<br>$k=2$：$\alpha$ 是重特征根 |
+| $e^{\alpha x} \sin \beta x$ 或<br>$e^{\alpha x} \cos \beta x$ | $x^k e^{\alpha x} [A \cos \beta x + B \sin \beta x]$                           | $k=0$：$\alpha \pm i\beta$ 不是特征根<br>$k=1$：$\alpha \pm i\beta$ 是特征根    |
+| $e^{\alpha x}(P_n(x) \sin \beta x + P_m(x) \cos \beta x)$    | $x^k e^{\alpha x} [P_l(x) \cos \beta x + Q_l(x) \sin \beta x]$ $l=\max{(m,n)}$ | $k=0$：$\alpha \pm i\beta$ 不是特征根<br>$k=1$：$\alpha \pm i\beta$ 是特征根    |
+注意$\sin$和$\cos$的系数/函数，都是分开设的
+核心其实是看$e$ 的指数部分是不是特征根！
+
+
+**非齐次方程的通解的两种表达**
+- 齐次方程的通解（n个线性无关解的线性组合）+ 一个特解
+- n+1个特解的仿射组合（系数和为1）—— 这是因为**任意两个之差，就是一个齐次解，且线性无关**。所以等价为第一种表达
+
+### 重积分与曲线曲面积分
+
+#### 积分次序变换
+
+尤其注意极坐标下的两种积分次序
+
+![[8CC50424FE447F01DA9B334A7EFBD3E0.png]]
+
+
+#### 重积分坐标变换
+
+设变换 $T:(u,v,w)\to(x,y,z)$ 可微，雅可比行列式：
+
+$$
+J= \frac{\partial(u,v,w)}{\partial(x,y,z)} = 
+\begin{vmatrix}
+\frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} & \frac{\partial u}{\partial z} \\
+\frac{\partial v}{\partial x} & \frac{\partial v}{\partial y} & \frac{\partial v}{\partial z} \\
+\frac{\partial w}{\partial x} & \frac{\partial w}{\partial y} & \frac{\partial w}{\partial z} \\
+\end{vmatrix}
+$$
+
+则积分变换公式：
+
+$$
+\iiint\limits_{\Omega} f(x,y,z)dv = \iiint\limits_{\Omega'} f(x(u,v,w),y(u,v,w),z(u,v,w))|J|dudvdw
+$$
+
+| 坐标系 | 变换公式                                       | 雅可比 $J$    | 积分元素             |
+| --- | ------------------------------------------ | ---------- | ---------------- |
+| 直角  | $x=x,\ y=y$                                | 1          | $dxdy$           |
+| 极坐标 | $x=r\cosθ,\ y=r\sinθ$                      | $r$        | $rdrdθ$          |
+| 柱坐标 | $x=r\cosθ,\ y=r\sinθ,\ z=z$                | $r$        | $rdrdθdz$        |
+| 球坐标 | $x=ρ\sinφ\cosθ,\ y=ρ\sinφ\sinθ,\ z=ρ\cosφ$ | $ρ^2\sinφ$ | $ρ^2\sinφdρdφdθ$ |
+
+先积$\rho$，再积$\phi$，最后积$\theta$
+
+不难发现，**平移不改变雅可比，平移很重要！**
+
+#### 第一类曲线
+
+##### 弧长微分
+$$
+ds = \sqrt{dx^2+dy^2}
+$$
+$$\int_{L} F\, ds$$
+
+##### 计算
+
+**唯一关键步骤**：找到曲线 $L$ 的一个**方便的参数化**，​使其为$(x(t), y(t)), t \in [a, b]$。
+
+- 平面：
+	- 首先将曲线用单一参数 $x$ 表示：$y=y(x),\, a\leq x\leq b,\,ds = \sqrt{1+(y')^2}dx$
+	- 然后转化为 $x$ 的定积分$$\int_a^b f(x,y(x))\sqrt{1+(y')^2}dx$$
+- - 换元法
+	- $x=x(t),y=y(t)$，曲线化为$F(t)=0$
+	- 极坐标换元是一个特例，即$x=R(\theta) \sin \theta$，只有在圆弧的时候$R$为常数，或者曲线本身就在极坐标有简单形式，才简单$\int_\alpha^\beta f(\rho\cos\theta,\rho\sin\theta)\sqrt{\rho^2 + (\rho')^2}d\theta$
+	- 如果是椭圆，不如$x=a \sin \theta, y=b \cos \theta$
+	- 在空间中，通常给出的即是曲线： $\vec{r}(t)=(x(t),y(t),z(t)), \alpha\leq t\leq\beta$
+
+
+#### 第一类曲面
+
+##### 面积微分
+
+$$dS = \sqrt{(dy \wedge dz)^2 + (dz \wedge dx)^2 + (dx \wedge dy)^2}$$
+$$\iint_\Sigma f(\rho) dS$$
+
+
+##### 投影法
+
+对曲面积分，只给出投影法
+
+注意绝对值：$$dS=\dfrac{1}{|\cos\gamma|} \cdot dxdy, \quad dS= \dfrac{1}{|\cos \alpha|} \cdot dydz$$
+应用：$\vec{n}=\dfrac{(F^{'}_{x},F^{'}_{y},F^{'}_{z})}{\sqrt{(F^{'}_{x})^2+(F^{'}_{y})^2+(F^{'}_{z})^2}}$，则$\cos \alpha = \dfrac{F_x}{\sqrt{F_x^2 + F_y^2 + F_z^2}}$
+
+于是：
+$$dS =\sqrt{1 + z_x^2 + z_y^2} \,dxdy \implies \iint_\Sigma f(x,y,z) dS = \iint_D f(x,y,z(x,y)) \sqrt{1 + z_x^2 + z_y^2} dxdy$$
+$$z_x^{'} = - \frac{F^{'}_x}{F^{'}_z} \;\;\;\; z_y^{'} = - \frac{F^{'}_y}{F^{'}_z}$$
+一定要注意是**在哪个面上积分（微分关系看哪个面）**，尤其是几个曲面相交的时候
+
+#### 第二类曲线
+
+##### 有向弧长
+$$d\vec{l} = dx\,\mathbf{i} + dy\,\mathbf{j} + dz\,\mathbf{k}$$
+$$\int_L \vec{F} \cdot d\vec{r} = \int_L Pdx + Qdy + Rdz = \int_\alpha^\beta \left( P\frac{dx}{dt} + Q\frac{dy}{dt} + R\frac{dz}{dt} \right) dt$$
+
+两种计算思路
+- 参数化，化为一元积分，此时其实与第一类曲线没有过大区别，除了有向性
+- 闭合曲线：转化为面积分
+	- 二维：平面，就是二重积分
+	- 三维：二类曲面（可以进一步转为一类曲面）
+
+##### 格林公式（二维曲面的环线）
+
+$$\oint_L Pdx + Qdy = \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dxdy = \iint_D \begin{vmatrix}
+\frac{\partial}{\partial x} & \frac{\partial}{\partial y} \\
+P & Q
+\end{vmatrix} dxdy$$
+
+曲线方向正向进行时取正（法向量沿z轴正向）
+
+存在奇点时，补曲线消除奇点，分成两部分计算。补线的方向是令行进方向为曲线正向
+
+##### 斯托克斯公式（三维闭合曲面的环线）
+$$\begin{align}
+\oint_{\partial \Sigma} \vec{F} \cdot d\vec{r} &= \iint_{\Sigma} (\nabla \times \vec{F}) \cdot d\vec{S}\\
+&= \iint_{\Sigma} (\nabla \times \vec{F}) \cdot \vec{n_{0}} \;d{S}
+\end{align}$$
+
+法向量方向为曲线环绕方向根据**右手定则**确定
+
+旋度复杂，不代表二类曲面转化为一类曲面后仍复杂，大胆算！
+
+#### 第二类曲面
+
+##### 有向面积
+$$d\vec{S} = dy\,dz\,\mathbf{i} + dz\,dx\,\mathbf{j} + dx\,dy\,\mathbf{k} = (\cos\alpha,\cos\beta,\cos\gamma)\cdot dS$$
+$$ \iint_\Sigma \vec{F} \cdot d\vec{S} = \iint_\Sigma Pdydz + Qdzdx + Rdxdy$$
+两种计算思路
+- 投影法，转化为一类曲面
+- 高斯公式，转化为三重积分
+
+
+##### 投影法
+
+方案一，展开，逐一投影：$\iint_\Sigma \vec{F} \cdot d\vec{S} = \iint_\Sigma Pdydz + Qdzdx + Rdxdy$
+
+- 其中单项的计算， ​以投影到$oxy$为例，**​±号​**​正是由​**​选定的法向量 n与 z轴正向的夹角​**​决定的 $$\iint_\Sigma Rdxdy = \iint_\Sigma R \cos\gamma dS = \pm \iint_{D_{xy}} R(x,y,z(x,y)) d \sigma$$
+- 注意右侧等式中，用$d \sigma$替换了$dxdy$以免符号混淆。这里强调的是投影后的面积元，是标量。
+- 而左侧的$dxdy$不同于二重积分（以及第一类曲面积分）中的$dxdy$，是有向的，准确的记号应该是$dx\wedge dy$。
+
+
+方案二，转化为第一类，再统一投影法计算 $$ \iint_\Sigma \vec{F} \cdot d\vec{S} = \iint_\Sigma \vec{F} \cdot \vec{n_{0}} \;dS$$
+
+##### 高斯公式
+
+$$\oint_{\partial \Omega} \vec{F} \cdot d\vec{S} = \iiint_{\Omega} \text{div}\vec{F} dV$$
+
+当法向选择外侧的时候，取正
+
+存在奇点时，补曲面消除奇点，分成两部分计算。补面的方向是令通量朝外侧的方向
+
+![[file-20251218211540918.png]]
+
+```mermaid
+flowchart TD
+    A[计算第二类曲线积分<br>∮_L Pdx+Qdy+Rdz] --> B{方法选择}
+    
+    B --> C[方法一：直接参数化]
+    C --> C1[将曲线L参数化为 r(t)=<x(t),y(t),z(t)>, t∈[a,b]]
+    C1 --> C2[直接代入计算<br>∫_a^b [P·x'(t)+Q·y'(t)+R·z'(t)]dt]
+    C2 --> R[得到结果]
+    
+    B --> D[方法二：Stokes公式<br>∮_L = ∬_Σ rotF·dS]
+    D --> E[化为第二类曲面积分<br>∬_Σ (∂R/∂y-∂Q/∂z)dydz + (∂P/∂z-∂R/∂x)dzdx + (∂Q/∂x-∂P/∂y)dxdy]
+    
+    E --> F{曲面积分计算方法}
+    
+    F --> G[方法①：按定义分项投影]
+    G --> G1[分别投影到三个坐标面]
+    G1 --> G2[确定各面正负号（外侧为正）]
+    G2 --> G3[计算三个二重积分后求和]
+    G3 --> R
+    
+    F --> H[方法②：补面用高斯公式]
+    H --> H1[补上曲面Σ'使Σ+Σ'成为封闭曲面]
+    H1 --> H2[应用高斯公式<br>∯_(Σ+Σ') = ∭_Ω div(rotF)dV=0]
+    H1 --> H3[计算补面上的积分∬_Σ']
+    H3 --> H4[原积分= -∬_Σ']
+    H4 --> R
+    
+    F --> I[方法③：化为第一类曲面积分]
+    I --> I1[∬_Σ rotF·dS = ∬_Σ rotF·n dS]
+    I1 --> I2[计算法向量n和<br>rotF·n的表达式]
+    I2 --> I3[选择合适投影面<br>（通常投影到Oxy）]
+    I3 --> I4[计算二重积分<br>∬_D rotF·n·|secγ|dxdy]
+    I4 --> R
+    
+    style A fill:#e1f5fe
+    style D fill:#f3e5f5
+    style R fill:#e8f5e8
+```
+
+#### 对称性
+
+第一类积分（对弧长的曲线积分、对面积的曲面积分）的对称性与重积分相似​​，因为它们都涉及​​正的度量元素​**​（弧长元素 $ds$、面积元素 $dS$、体积元素 $dV$），或者说是点函数积分**
+第二类积分（**对坐标**的曲线积分、对坐标的曲面积分）的对称性要复杂得多​**​，因为涉及方向性问题。
+
+对称性的关键是积分区域的对称性。在此基础上如果被积函数有合适的性质，可以简化计算
+- 直接看图形，有无对称性
+- 从区域的表达式出发，看有无对称性
+- **先判断区域对称性**，再分析被积函数奇偶性
+
+对于第一类，以$\Omega(x,y,z)$指代积分区域/曲线，$f(x,y,z)$指代被积函数：
+- 二维：
+	- 轴对称性：积分区域**关于坐标轴**对称，看被积函数的奇偶性
+		- 如 $\Omega(x,y)=\Omega(x,-y)$，则关于$x$轴对称
+		- 此时 $\int_{\Omega}f(x,y) d \Omega = \int_{\Omega}f(x,-y) d \Omega \implies$ 若$f$关于$y$为奇函数，积分为0
+	- 点对称
+		- 如 $\Omega(x,y)=\Omega(-x,-y)$，则关于原点对称
+		- 若$f$ 关于原点奇对称，则积分为0
+	- 轮换对称：积分区域**关于$y=x$** 对称，可以交换$x$和$y$
+		- 也即是否有 $\Omega(x,y)=\Omega(y,x)$
+		- 此时 $\int_{\Omega}f(x,y) d \Omega = \int_{\Omega}f(y,x) d \Omega$
+- 三维：
+	- 面对称性：积分区域关于坐标平面对称，看被积函数的奇偶性
+		- 如果 $\Omega(x,y,z)=\Omega(x,y,-z)$，则关于$oxy$对称
+		- 在三维里很少研究关于坐标轴的对称，当然其可以自然从二维推广，即$\Omega(x,y,z)=\Omega(x,-y,-z)$，则关于x轴对称
+	- 对换对称性，关于斜平面对称
+		- 如果$\Omega(x,y,z)=\Omega(y,x,z)$，则关于$y=x$对称，这是二维轮换的自然延伸
+		- 此时 $\int_{\Omega}f(x,y,z) d \Omega = \int_{\Omega}f(y,x,z) d \Omega$
+	- 轮换对称性
+		- 如果曲线/曲面满足：$\Omega(x,y,z)=\Omega(y,z,x)$，则 $x->y->z->x$ 轮换可行。无须检验是否$=\Omega(z,x,y)$，因为自然可以推出
+		- 等价于，积分区域关于$y=x=z$对称（我想象力差很难看出来，不如代数直观）
+
+
+对于第二类，区域对称，依然能够交换 $f$ 的积分变量顺序，但是转换后积分最后的正负要结合法向量的正负来判别
+
+
+#### 应用
+*   **重心**：
+    $$\bar{x} = \frac{1}{m}\iiint_\Omega x\rho dV, \ \bar{y} = \frac{1}{m}\iiint_\Omega y\rho dV, \ \bar{z} = \frac{1}{m}\iiint_\Omega z\rho dV$$
+    $$\bar{x} = \frac{\int_\Omega x \cdot u(\rho) d\Omega}{\int_\Omega u(\rho) d\Omega}$$
+    
+*   **转动惯量**：
+    $$I_z = \iiint_\Omega (x^2 + y^2)\rho dV$$
+    
+*   **引力**：
+    $$\vec{F} = \left( G\iiint_\Omega \frac{x}{r^3}\rho dV, \ G\iiint_\Omega \frac{y}{r^3}\rho dV, \ G\iiint_\Omega \frac{z}{r^3}\rho dV \right)$$
+
+
+#### 积分路径无关性
+
+**在单连通区域中**，如果向量场 $\vec{F}(x,y,z)=(P(x,y,z),Q(x,y,z),R(x,y,z))$ 无旋，又称为满足恰当微分条件，则其一定有一个**单值的**原函数（势函数）$\mu(x,y,z)$ 满足$\nabla \mu=F$，反之也成立
+
+- $D$必须是函数 $M(x,y)$和 $N(x,y)$ **有定义且其一阶偏导数连续的区域的一个子集**
+	- 如果函数有极点，则需要在$D$的基础上挖去极点
+	- 比如$F$在原点无定义，给定区域$x^2+y^2<=1$，我们还需要挖去原点，则最后的区域不是单连通
+- 在单连通区域上，从$A$到$B$的曲线上的积分，有$\int_L Pdx + Qdy = u(B) - u(A)$，与路径无关
+
+- 如果区域 $D$ 不是单连通的，那么即使旋度为0，也可能不存在**单值的**势函数——在跨越某些界限的时候，取值可能突变！
+- 举例：考虑向量场 $\vec{F} = \left(-\frac{y}{x^2+y^2}, \frac{x}{x^2+y^2}\right)$，定义在区域 $D = \mathbb{R}^2 \setminus \{(0,0)\}$（即去掉原点的平面），这不是单连通区域（因为原点有洞）。在单位圆上的积分是$2\pi$，在跨越y=0时，势函数指会增加$2\pi$
+
+
+现在，我们考虑从$A$到$B$的**曲线**上的积分，即$\int_L Pdx + Qdy$
+- 如果是闭合曲线，则我们很容易判别其包围的区域是否是单连通的
+	- 如果单连通，直接算
+	- 如果不，可以补充新的曲线，使得$\int_L Pdx + Qdy=\int_{L+L_{1}-L_{1}} Pdx + Qdy$
+		- $\int_{L-L_{1}} Pdx + Qdy=0$
+		- 在新曲线上积分，消除极点，轻松计算$\int_{L_{1}} Pdx + Qdy=0$
+		- 所以其实就是选取一条新的、**同方向**的曲线来计算——复变里有结论，就是围绕相同极点的行进方向相同的曲线，环路积分相同
+- 如果是非闭合曲线——我们怎么判别能否用势函数？
+	- 计算绕数
+		- 对于开放路径，绕数可以通过计算**路径起点和终点相对于原点的角度变化**来确定。如果角度的净变化超**过 π 或小于 −π**，则表明路径绕过了原点。
+		- 在$(0,2\pi)$范围内记录起点和终点的角度，作差
+		- 路径如果穿过**分割线**，需要增加
+		- 最后求和
+		- 分割线是什么？——函数不同，就不同，我也不知道！
+	- 或者：**连续变形测试**：想象将路径连续变形为直线路径（从起点到终点），如果变形过程中必须经过奇点，则路径绕过了奇点
+- 唉，**对非闭合曲线，建议直接参数化计算**！太容易出错了！
