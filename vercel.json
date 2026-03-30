@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "config.toml",
+      "src": "hugo.toml",
       "use": "@vercel/static-build",
       "config": { "distDir": "public" }
     }
