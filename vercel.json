@@ -1,0 +1,10 @@
+{
+  "build": {
+    "command": "hugo",
+    "outputDirectory": "public"
+  },
+  "dev": {
+    "command": "hugo server -D",
+    "port": 1313
+  }
+}
