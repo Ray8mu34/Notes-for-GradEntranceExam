@@ -1,45 +1,32 @@
 {{- /* 内联自定义CSS */ -}}
 <style>
+  /* 调整页面宽度 */
   .main {
-    max-width: none;
-    width: 100%;
     max-width: 1400px;
   }
   
-  .post-single {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    align-items: flex-start;
-  }
-  
+  /* 确保文章内容区域有足够宽度 */
   .post-content {
-    flex: 1;
-    min-width: 0;
     max-width: 1200pt;
     overflow-x: auto;
   }
   
-  .post-content pre, .post-content code {
-    overflow-x: auto;
-  }
-  
+  /* 处理代码和公式的溢出 */
+  .post-content pre, 
+  .post-content code, 
   .post-content math {
     overflow-x: auto;
-    display: block;
   }
   
+  /* 目录样式调整 */
   .toc {
     position: sticky;
     top: 20px;
-    width: 280px;
     max-height: calc(100vh - 40px);
     overflow-y: auto;
-    margin-bottom: 0;
-    align-self: flex-start;
-    flex-shrink: 0;
   }
   
+  /* 响应式调整 */
   @media (max-width: 1024px) {
     .post-content {
       max-width: none;
