@@ -1,4 +1,4 @@
-baseURL = 'http://localhost:1313/'
+baseURL = 'https://Ray8mu34.github.io/Notes-for-GradEntranceExam/'
 locale = 'zh-cn'
 title = '考研笔记'
 theme = 'PaperMod'
