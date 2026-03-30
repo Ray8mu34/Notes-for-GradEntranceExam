@@ -1,0 +1,47 @@
+.main {
+  max-width: none;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.post-single {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.post-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 800px;
+}
+
+.toc {
+  position: sticky;
+  top: 20px;
+  width: 280px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  margin-bottom: 0;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .post-single {
+    flex-direction: column;
+  }
+  
+  .toc {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-height: none;
+    align-self: auto;
+  }
+  
+  .post-main {
+    max-width: none;
+  }
+}

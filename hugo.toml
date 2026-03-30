@@ -1,0 +1,42 @@
+baseURL = 'http://localhost:1313/'
+locale = 'zh-cn'
+title = '考研笔记'
+theme = 'PaperMod'
+
+[params]
+  ShowToc = true
+  TocOpen = true
+
+[menu]
+  [[menu.main]]
+    name = '首页'
+    url = '/' 
+    weight = 1
+  [[menu.main]]
+    name = '微积分笔记'
+    url = '/微积分笔记/'
+    weight = 2
+  [[menu.main]]
+    name = '线代笔记'
+    url = '/线代笔记/'
+    weight = 3
+  [[menu.main]]
+    name = '概统笔记'
+    url = '/概统笔记/'
+    weight = 4
+  [[menu.main]]
+    name = '控制理论笔记'
+    url = '/控制理论笔记/'
+    weight = 5
+  [[menu.main]]
+    name = '控制理论习题'
+    url = '/控制理论习题/'
+    weight = 6
+  [[menu.main]]
+    name = '英语大作文讲解'
+    url = '/英语大作文讲解/'
+    weight = 7
+  [[menu.main]]
+    name = '英语小作文讲解'
+    url = '/英语小作文讲解/'
+    weight = 8
