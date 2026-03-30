@@ -34,3 +34,6 @@ dist/
 # Logs
 logs
 *.log
+
+# Local documentation
+本地部署与网页托管区别.md
