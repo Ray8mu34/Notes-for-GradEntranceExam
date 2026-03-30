@@ -11,10 +11,20 @@
   align-items: flex-start;
 }
 
-.post-main {
+.post-content {
   flex: 1;
   min-width: 0;
   max-width: 800px;
+  overflow-x: auto;
+}
+
+.post-content pre, .post-content code {
+  overflow-x: auto;
+}
+
+.post-content math {
+  overflow-x: auto;
+  display: block;
 }
 
 .toc {
