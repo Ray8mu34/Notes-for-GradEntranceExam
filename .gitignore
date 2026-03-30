@@ -2,9 +2,6 @@
 /public
 .hugo_build.lock
 
-# Hugo themes
-themes/
-
 # Dependency directories
 node_modules/
 
