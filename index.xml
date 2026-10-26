@@ -1,45 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>首页 on 考研笔记</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/</link><description>Recent content in 首页 on 考研笔记</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 30 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/index.xml" rel="self" type="application/rss+xml"/><item><title>微积分笔记</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="初等数学基础"&gt;初等数学基础&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>首页 on 考研笔记</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/</link><description>Recent content in 首页 on 考研笔记</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 26 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/index.xml" rel="self" type="application/rss+xml"/><item><title>微积分公式与结论汇总</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E5%BE%AE%E7%A7%AF%E5%88%86%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="初等数学基础"&gt;初等数学基础&lt;/h3&gt;
 &lt;h4 id="三角函数恒等变换"&gt;三角函数恒等变换&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;平方关系&lt;/strong&gt;
-$$
-sin^2\theta + cos^2\theta = 1, \quad 1 + tan^2\theta = sec^2\theta, \quad 1 + cot^2\theta = csc^2\theta
-$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;平方关系&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="math-block"&gt;\[\sin^2\theta + \cos^2\theta = 1, \quad 1 + \tan^2\theta = \sec^2\theta, \quad 1 + \cot^2\theta = \csc^2\theta\]&lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;诱导公式&lt;/strong&gt;
-$$\left{
+&lt;p&gt;&lt;strong&gt;诱导公式&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="math-block"&gt;\[\left\{
 \begin{array}{ll}
-\text{(1) } sin\left(\dfrac{\pi}{2} \pm \alpha\right) = cos\alpha &amp;amp; \
-\text{(2) } sin (\pi \pm \alpha) = \mp sin\alpha &amp;amp; \
-\text{(3) } cos\left(\dfrac{\pi}{2} \pm \alpha\right) = \mp sin\alpha &amp;amp; \
-\text{(4) } cos (\pi \pm \alpha) = -cos\alpha &amp;amp;
+\text{(1) } \sin\left(\dfrac{\pi}{2} \pm \alpha\right) = \cos\alpha &amp;amp; \\
+\text{(2) } \sin (\pi \pm \alpha) = \mp \sin\alpha &amp;amp; \\
+\text{(3) } \cos\left(\dfrac{\pi}{2} \pm \alpha\right) = \mp \sin\alpha &amp;amp; \\
+\text{(4) } \cos (\pi \pm \alpha) = -\cos\alpha &amp;amp;
 \end{array}
-\right.$$&lt;/p&gt;
+\right.\]&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;奇变偶不变，符号看象限&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$\frac{\pi}{2}$的奇数倍 → 函数名改变（sin↔cos）&lt;/li&gt;
-&lt;li&gt;$\frac{\pi}{2}$的偶数倍 → 函数名不变&lt;/li&gt;
-&lt;li&gt;符号由$\alpha$视为锐角时原函数在对应象限的符号决定&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(\frac{\pi}{2}\)&lt;/span&gt;的奇数倍 → 函数名改变（sin↔cos）&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(\frac{\pi}{2}\)&lt;/span&gt;的偶数倍 → 函数名不变&lt;/li&gt;
+&lt;li&gt;符号由&lt;span class="math-inline"&gt;\(\alpha\)&lt;/span&gt;视为锐角时原函数在对应象限的符号决定&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;和差角&lt;/strong&gt;
-$$
-\begin{align*}
-sin(\alpha \pm \beta) &amp;amp;= sin\alpha cos\beta \pm cos\alpha sin\beta \\cos(\alpha \pm \beta) &amp;amp;= cos\alpha cos\beta \mp sin\alpha sin\beta \\tan(\alpha \pm \beta) &amp;amp;= \frac{tan\alpha \pm tan\beta}{1 \mp tan\alpha tan\beta}
-\end{align*}
-$$&lt;/p&gt;</description></item><item><title>控制理论习题</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/</guid><description>&lt;h3 id="数学模型"&gt;数学模型&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;和差角&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>控制理论习题</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/</guid><description>&lt;h3 id="数学模型"&gt;数学模型&lt;/h3&gt;
 &lt;h4 id="建模"&gt;建模&lt;/h4&gt;
 &lt;h5 id="电路"&gt;电路&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="file-20251015160917932.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/file-20251015160917932.png"&gt;&lt;/p&gt;
 &lt;p&gt;两个总结：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;节点方程往往只能在$S$域写出，因为本质上是微分关系&lt;/li&gt;
-&lt;li&gt;状态变量应该选择$v_c$和$i_L$，不应该选电阻（乱七八糟的）&lt;/li&gt;
+&lt;li&gt;节点方程往往只能在&lt;span class="math-inline"&gt;\(S\)&lt;/span&gt;域写出，因为本质上是微分关系&lt;/li&gt;
+&lt;li&gt;状态变量应该选择&lt;span class="math-inline"&gt;\(v_c\)&lt;/span&gt;和&lt;span class="math-inline"&gt;\(i_L\)&lt;/span&gt;，不应该选电阻（乱七八糟的）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;img alt="76E24AD3BDF14E8EF6CA3D6542333987.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/76E24AD3BDF14E8EF6CA3D6542333987.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="A9907EDBDD62CFB09D44E951F0AC8E79.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/A9907EDBDD62CFB09D44E951F0AC8E79.png"&gt;&lt;/p&gt;
@@ -104,8 +97,8 @@ $$&lt;/p&gt;</description></item><item><title>控制理论习题</title><link>ht
 &lt;p&gt;&lt;img alt="file-20251209184857619.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/file-20251209184857619.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="1CF769E2467E8842648997A485E04D17.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/1CF769E2467E8842648997A485E04D17.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="file-20251016161034505.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/file-20251016161034505.png"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="0BC4CCF88A95E5E29B2CA61F2947EF4A.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/0BC4CCF88A95E5E29B2CA61F2947EF4A.png"&gt;&lt;/p&gt;</description></item><item><title>控制理论笔记</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="控制系统结构"&gt;控制系统结构&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="控制系统结构" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/file-20251108164032941.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="0BC4CCF88A95E5E29B2CA61F2947EF4A.png" loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E4%B9%A0%E9%A2%98/0BC4CCF88A95E5E29B2CA61F2947EF4A.png"&gt;&lt;/p&gt;</description></item><item><title>控制理论公式与结论汇总</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="控制系统结构"&gt;控制系统结构&lt;/h3&gt;
+&lt;p&gt;&lt;img loading="lazy" src="https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA%E7%AC%94%E8%AE%B0/file-20251108164032941.png"&gt;&lt;/p&gt;
 &lt;p&gt;参考输人元件、比较元件、控制元件、执行元件、被控对象、反馈元件 六个基本单元组成&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;被控对象：输出被控变量&lt;/li&gt;
@@ -138,64 +131,94 @@ $$&lt;/p&gt;</description></item><item><title>控制理论习题</title><link>ht
 &lt;ul&gt;
 &lt;li&gt;电流方程 - 速度方程 - 角速度方程，都是一阶导+一阶积分&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;因此，如果使用电流阻抗$U(s)/I(s)$，机械阻抗$F(s)/V(s)$，可以统一如下。但建议不要过分追求阻抗表达式的形式相似，而是关注微分方程的整体形式&lt;/p&gt;
-&lt;p&gt;$$Q=CV, \Psi=LI$$&lt;/p&gt;
+&lt;p&gt;因此，如果使用电流阻抗&lt;span class="math-inline"&gt;\(U(s)/I(s)\)&lt;/span&gt;，机械阻抗&lt;span class="math-inline"&gt;\(F(s)/V(s)\)&lt;/span&gt;，可以统一如下。但建议不要过分追求阻抗表达式的形式相似，而是关注微分方程的整体形式&lt;/p&gt;
+&lt;div class="math-block"&gt;\[Q=CV, \Psi=LI\]&lt;/div&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style="text-align: left"&gt;电路&lt;/th&gt;
 &lt;th&gt;平动&lt;/th&gt;
 &lt;th&gt;转动&lt;/th&gt;
-&lt;th&gt;$U(s)/I(s),F(s)/V(s)$&lt;/th&gt;
+&lt;th&gt;&lt;span class="math-inline"&gt;\(U(s)/I(s),F(s)/V(s)\)&lt;/span&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td style="text-align: left"&gt;$i_C(t) = C \dot{V_C}(t)$&lt;!-- raw HTML omitted --&gt;$V_C(t) = \frac{1}{C} \int i_C(t) dt$&lt;/td&gt;
-&lt;td&gt;$F_k(t) = k \cdot (x_1(t) - x_2(t))$&lt;!-- raw HTML omitted --&gt;$v(t) = \frac{1}{k} \dot{F_k}(t)$&lt;/td&gt;
-&lt;td&gt;$\tau_K(t) = K \cdot (\theta_1(t) - \theta_2(t))$&lt;!-- raw HTML omitted --&gt;$\omega(t) = \frac{1}{K} \dot{\tau_K}(t)$&lt;/td&gt;
-&lt;td&gt;$\frac{1}{s}$&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;span class="math-inline"&gt;\(i_C(t) = C \dot{V_C}(t)\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(V_C(t) = \frac{1}{C} \int i_C(t) dt\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(F_k(t) = k \cdot (x_1(t) - x_2(t))\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(v(t) = \frac{1}{k} \dot{F_k}(t)\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(\tau_K(t) = K \cdot (\theta_1(t) - \theta_2(t))\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(\omega(t) = \frac{1}{K} \dot{\tau_K}(t)\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(\frac{1}{s}\)&lt;/span&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="text-align: left"&gt;$V_L(t) = L \dot{i_L}(t)$&lt;!-- raw HTML omitted --&gt;$i_L(t) = \frac{1}{L} \int V_L(t) dt$&lt;/td&gt;
-&lt;td&gt;$F_m(t) = m \dot{v}(t)$&lt;!-- raw HTML omitted --&gt;$F_m(t) = m \ddot{x}(t)$&lt;/td&gt;
-&lt;td&gt;$\tau_J(t) = J \dot{\omega}(t)$&lt;!-- raw HTML omitted --&gt;$\tau_J(t) = J \ddot{\theta}(t)$&lt;/td&gt;
-&lt;td&gt;$s$&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;span class="math-inline"&gt;\(V_L(t) = L \dot{i_L}(t)\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(i_L(t) = \frac{1}{L} \int V_L(t) dt\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(F_m(t) = m \dot{v}(t)\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(F_m(t) = m \ddot{x}(t)\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(\tau_J(t) = J \dot{\omega}(t)\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(\tau_J(t) = J \ddot{\theta}(t)\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(s\)&lt;/span&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style="text-align: left"&gt;$V_R(t) = R \cdot i(t)$&lt;/td&gt;
-&lt;td&gt;$F_b(t) = b \cdot v(t)$&lt;!-- raw HTML omitted --&gt;$F_b(t) = b \cdot \dot{x}(t)$&lt;/td&gt;
-&lt;td&gt;$\tau_B(t) = B \cdot \omega(t)$&lt;!-- raw HTML omitted --&gt;$\tau_B(t) = B \cdot \dot{\theta}(t)$&lt;/td&gt;
-&lt;td&gt;$1$&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;span class="math-inline"&gt;\(V_R(t) = R \cdot i(t)\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(F_b(t) = b \cdot v(t)\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(F_b(t) = b \cdot \dot{x}(t)\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(\tau_B(t) = B \cdot \omega(t)\)&lt;/span&gt;&lt;br&gt;&lt;span class="math-inline"&gt;\(\tau_B(t) = B \cdot \dot{\theta}(t)\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="math-inline"&gt;\(1\)&lt;/span&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;不过个人对平动系统，更喜欢建立关于位移x的微分方程，因而实际上不会用的这里的机械导纳的概念。最核心的还是时域的特性。&lt;/p&gt;</description></item><item><title>概统笔记</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="事件与关系"&gt;事件与关系&lt;/h3&gt;
+&lt;p&gt;不过个人对平动系统，更喜欢建立关于位移x的微分方程，因而实际上不会用的这里的机械导纳的概念。最核心的还是时域的特性。&lt;/p&gt;</description></item><item><title>概率论与数理统计公式与结论汇总</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="事件与关系"&gt;事件与关系&lt;/h3&gt;
 &lt;p&gt;常用恒等式：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$\overline{A \cup B} = \overline{A} \cap \overline{B}$，$\overline{A \cap B} = \overline{A} \cup \overline{B}$&lt;/li&gt;
-&lt;li&gt;$A \cup B = A+B - A \cap B$&lt;/li&gt;
-&lt;li&gt;$A \cap \overline{B}=A-A \cap B$，类似全概率公式，&lt;strong&gt;集合的划分与差集运算&lt;/strong&gt;与&lt;strong&gt;概率的分解&lt;/strong&gt;在逻辑结构上是一致的&lt;/li&gt;
-&lt;li&gt;$\overline{A} ;\overline{B}=1-A \cup B = (\overline{A \cup B})$&lt;/li&gt;
-&lt;li&gt;$P(A|B) = \dfrac{P(AB)}{P(B)} \quad (P(B) &amp;gt; 0)$&lt;/li&gt;
-&lt;li&gt;$P(A)+P(B)-1&amp;lt;=P(A \cap B)&amp;lt;= \min{P(A),P(B)}$&lt;/li&gt;
-&lt;li&gt;$P\left( \bigcup_{i=1}^n A_i \right) = \sum_{i} P(A_i) - \sum_{i&amp;lt;j} P(A_i A_j) + \sum_{i&amp;lt;j&amp;lt;k} P(A_i A_j A_k) - \cdots + (-1)^{n-1} P(A_1 A_2 \dots A_n)$&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(\overline{A \cup B} = \overline{A} \cap \overline{B}\)&lt;/span&gt;，&lt;span class="math-inline"&gt;\(\overline{A \cap B} = \overline{A} \cup \overline{B}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(A \cup B = A+B - A \cap B\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(A \cap \overline{B}=A-A \cap B\)&lt;/span&gt;，类似全概率公式，&lt;strong&gt;集合的划分与差集运算&lt;/strong&gt;与&lt;strong&gt;概率的分解&lt;/strong&gt;在逻辑结构上是一致的&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(\overline{A} \;\overline{B}=1-A \cup B = (\overline{A \cup B})\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(P(A|B) = \dfrac{P(AB)}{P(B)} \quad (P(B) &amp;gt; 0)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(P(A)+P(B)-1&amp;lt;=P(A \cap B)&amp;lt;= \min\{P(A),P(B)\}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(P\left( \bigcup_{i=1}^n A_i \right) = \sum_{i} P(A_i) - \sum_{i&amp;lt;j} P(A_i A_j) + \sum_{i&amp;lt;j&amp;lt;k} P(A_i A_j A_k) - \cdots + (-1)^{n-1} P(A_1 A_2 \dots A_n)\)&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;一些记号：&lt;/p&gt;</description></item><item><title>线代笔记</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="行列式"&gt;行列式&lt;/h3&gt;
-&lt;p&gt;$$\begin{align*}
-\left|\begin{matrix} A &amp;amp; O \ O &amp;amp; B \end{matrix}\right| &amp;amp;= \left|\begin{matrix} A &amp;amp; C \ O &amp;amp; B \end{matrix}\right| = \left|\begin{matrix} A &amp;amp; O \ C &amp;amp; B \end{matrix}\right| = |A||B|, \
-\left|\begin{matrix} O &amp;amp; A \ B &amp;amp; O \end{matrix}\right| &amp;amp;= \left|\begin{matrix} C &amp;amp; A \ B &amp;amp; O \end{matrix}\right| = \left|\begin{matrix} O &amp;amp; A \ B &amp;amp; C \end{matrix}\right| = (-1)^{mn}|A||B|.
-\end{align*}
-$$&lt;/p&gt;
-&lt;p&gt;$$\begin{array}{|c|c|c|c|c|c|c|c|}
+&lt;p&gt;一些记号：&lt;/p&gt;</description></item><item><title>线性代数公式与结论汇总</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E7%BA%BF%E4%BB%A3%E7%AC%94%E8%AE%B0/</guid><description>&lt;h3 id="行列式"&gt;行列式&lt;/h3&gt;
+&lt;div class="math-block"&gt;\[\begin{align*}
+\left|\begin{matrix} A &amp;amp; O \\ O &amp;amp; B \end{matrix}\right| &amp;amp;= \left|\begin{matrix} A &amp;amp; C \\ O &amp;amp; B \end{matrix}\right| = \left|\begin{matrix} A &amp;amp; O \\ C &amp;amp; B \end{matrix}\right| = |A||B|, \\
+\left|\begin{matrix} O &amp;amp; A \\ B &amp;amp; O \end{matrix}\right| &amp;amp;= \left|\begin{matrix} C &amp;amp; A \\ B &amp;amp; O \end{matrix}\right| = \left|\begin{matrix} O &amp;amp; A \\ B &amp;amp; C \end{matrix}\right| = (-1)^{mn}|A||B|.
+\end{align*}\]&lt;/div&gt;
+&lt;div class="math-block"&gt;\[\begin{array}{|c|c|c|c|c|c|c|}
 \hline
-\text{矩阵} &amp;amp; A &amp;amp; kA &amp;amp; A^* &amp;amp; f(A) &amp;amp; A^{-1} &amp;amp; A&amp;rsquo; &amp;amp; P^{-1}AP \
+\text{矩阵} &amp;amp; A &amp;amp; kA &amp;amp; f(A) &amp;amp; A^{-1} &amp;amp; A^{*} &amp;amp; P^{-1}AP \\
 \hline
-\text{特征值} &amp;amp; \lambda &amp;amp; k\lambda &amp;amp; \lambda^* &amp;amp; f(\lambda) &amp;amp; \frac{1}{\lambda} &amp;amp; \frac{|A|}{\lambda} &amp;amp; \lambda \
+\text{特征值} &amp;amp; \lambda &amp;amp; k\lambda &amp;amp; f(\lambda) &amp;amp; \frac{1}{\lambda} &amp;amp; \frac{|A|}{\lambda} &amp;amp; \lambda \\
 \hline
-\text{对应的特征向量} &amp;amp; \xi &amp;amp; \xi &amp;amp; \xi &amp;amp; \xi &amp;amp; \xi &amp;amp; \xi &amp;amp; P^{-1}\xi \
+\text{对应的特征向量} &amp;amp; \xi &amp;amp; \xi &amp;amp; \xi &amp;amp; \xi &amp;amp; \xi &amp;amp; P^{-1}\xi \\
 \hline
-\end{array}$$&lt;/p&gt;</description></item><item><title>英语大作文讲解</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E8%8B%B1%E8%AF%AD%E5%A4%A7%E4%BD%9C%E6%96%87%E8%AE%B2%E8%A7%A3/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E8%8B%B1%E8%AF%AD%E5%A4%A7%E4%BD%9C%E6%96%87%E8%AE%B2%E8%A7%A3/</guid><description>&lt;p&gt;无论是漫画还是图表，还是材料作文，都是三段式结构。&lt;/p&gt;
+\end{array}\]&lt;/div&gt;
+&lt;div class="math-block"&gt;\[\begin{array}{|c|c|}
+\hline
+\textbf{运算} &amp;amp; \textbf{行列式变化} \\
+\hline
+\text{交换两行} &amp;amp; |A&amp;#39;| = -|A| \\
+\hline
+\text{行乘}k &amp;amp; |A&amp;#39;| = k|A| \\
+\hline
+\text{整体乘c} &amp;amp; |cA| = c^{n}|A|\\
+\hline
+\text{行倍加} &amp;amp; |A&amp;#39;| = |A| \\
+\hline
+\text{转置} &amp;amp; |A^{\!T}| = |A| \\
+\hline
+\text{乘积} &amp;amp; |AB| = |A||B| \\
+\hline
+\text{逆} &amp;amp; |A^{-1}| = |A|^{-1} \\
+\hline
+\text{可逆伴随} &amp;amp; |A^{*}| = |A|^{n-1} \\
+\hline
+\end{array}\]&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(|A + kI| = \prod_{i=1}^n (\lambda_i + k)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;span class="math-inline"&gt;\((2B)^{*}\)&lt;/span&gt; 与 &lt;span class="math-inline"&gt;\(2B^{*}\)&lt;/span&gt; 是不同的矩阵&lt;/strong&gt;！“求伴随”和“数乘”这两个操作&lt;strong&gt;不满足交换律&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;对于伴随矩阵，有性质&lt;span class="math-inline"&gt;\((kB)^{*}=k^{n−1}B^{*}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="math-inline"&gt;\(|(2A)^{*}|=|2A|^{n-1}=2^{n(n-1)}|A|^{n-1}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;计算技巧见笔记&lt;/p&gt;</description></item><item><title>英语大作文讲解</title><link>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E8%8B%B1%E8%AF%AD%E5%A4%A7%E4%BD%9C%E6%96%87%E8%AE%B2%E8%A7%A3/</link><pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate><guid>https://Ray8mu34.github.io/Notes-for-GradEntranceExam/%E8%8B%B1%E8%AF%AD%E5%A4%A7%E4%BD%9C%E6%96%87%E8%AE%B2%E8%A7%A3/</guid><description>&lt;p&gt;无论是漫画还是图表，还是材料作文，都是三段式结构。&lt;/p&gt;
 &lt;p&gt;个人以为，&lt;strong&gt;万物转社会现象&lt;/strong&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
