@@ -69,14 +69,23 @@
   }
 </style>
 
-{{- /* MathJax support for LaTeX formulas */ -}}
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+{{- /* Configure MathJax before loading it; passthrough keeps the original TeX intact. */ -}}
 <script>
-  MathJax = {
+  window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true
+      processEscapes: true,
+      macros: { degree: '{^\\circ}' }
     }
   };
 </script>
+<script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+
+{{- $noop := .WordCount -}}
+{{- if .Store.Get "hasMermaid" -}}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, securityLevel: 'strict', theme: 'neutral' });
+</script>
+{{- end -}}

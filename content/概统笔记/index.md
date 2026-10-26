@@ -1,6 +1,7 @@
 ---
-title: "概统笔记"
+title: "概率论与数理统计公式与结论汇总"
 date: 2026-03-30
+lastmod: 2026-10-26
 ---
 
 ### 事件与关系
@@ -18,11 +19,13 @@ date: 2026-03-30
 
 
 一些记号：
+
 - $A-B=A \cap \overline{B}=A-A \cap B$
 
 一些结论
+
 - $AB=\overline{A}\; \overline{B} \implies \text{A与B是对立事件（和为全集U）}$
-- $A$ 与 $B$ 独立 $\iff P(AB) = P(A)P(B)$ $\iff$ $A$ 与 $\overline{B}$ 独立 $\iff$ $\overline{A}$ 与 $B$ 独立 $\iff$ $\overline{A}$ 与 $\overline{B}$ 独立 $\iff P(\overline{A} \mid \overline{B}) + P(A \mid B)=1$
+- $A$ 与 $B$ 独立 $\iff P(AB) = P(A)P(B)$ $\iff$ $A$ 与 $\overline{B}$ 独立 $\iff$ $\overline{A}$ 与 $B$ 独立 $\iff$ $\overline{A}$ 与 $\overline{B}$ 独立 $\iff P(\overline{A} \mid \overline{B}) + P(A \mid B)=1\quad(0<P(B)<1)$
 - 如果 $A$与 $B_{1},B_{2}​,\dots,B_{k}​$**相互独立**，那么 $A$与由 $B_{1},B_{2}​,\dots,B_{k}​$生成的任何布尔组合事件独立
 
 
@@ -38,6 +41,7 @@ date: 2026-03-30
 #### 分布函数
 
 概率分布函数（即累积分布函数，CDF）无论是对于离散型、连续型还是混合型（包括奇异分布）随机变量，都是**单调不减**的、**右连续的**
+
 - **离散型**：CDF是右连续阶梯函数。
 - **连续型**：CDF是绝对连续函数。
 - **混合型**：结合离散和连续成分。
@@ -60,17 +64,27 @@ date: 2026-03-30
 - $n$个独立的指数分布的最小值，也是指数分布，且参数为各分布参数之和（易推导）
 - 二项分布：$X=[(n+1)p]$ 出现的概率最大（向下取整）
 
-$$\Gamma(z) = \int_0^\infty t^{z-1} e^{-t} dt, \quad \text{Re}(z) > 0$$
-$$\Gamma(1/2)=\sqrt{\pi}$$
-$$\Gamma(z+1) = z\Gamma(z)$$
+```math
+\Gamma(z) = \int_0^\infty t^{z-1} e^{-t} dt, \quad \text{Re}(z) > 0
+```
+
+```math
+\Gamma(1/2)=\sqrt{\pi}
+```
+
+```math
+\Gamma(z+1) = z\Gamma(z)
+```
 
 | 名称   | 记号                 | 分布律/密度函数                                                                       | 期望                         | 方差                                             |
 | ---- | ------------------ | ------------------------------------------------------------------------------ | -------------------------- | ---------------------------------------------- |
-| 卡方分布 | $X \sim \chi^2(k)$ | $X=\sum_{i=1}^n Z_i^2$, $Z_i\sim N(0,1)$，则$X\sim χ²(n)$                        | $k$                        | $2k$                                           |
-| t分布  | $X \sim t(k)$      | $T=\dfrac{Z}{\sqrt{V/n}}$, $Z\sim N(0,1)$, $V\sim χ²(n)$，则$T\sim t(n)$         | $0$                        | $k$ (当 $k \to \infty$ 时趋近于1)                   |
-| F分布  | $X \sim F(m, n)$   | $F=\dfrac{U/n_1}{V/n_2}$, $U\sim χ²(n_1)$, $V\sim χ²(n_2)$，则$F\sim F(n_1,n_2)$ | $\dfrac{n}{n-2}$ (当 $n>2$) | $\dfrac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$ (当 $n>4$) |
+| 卡方分布 | $X \sim \chi^2(k)$ | $X=\sum_{i=1}^n Z_i^2$, $Z_i\overset{\mathrm{i.i.d.}}{\sim}N(0,1)$，则$X\sim χ²(n)$                        | $k$                        | $2k$                                           |
+| t分布  | $X \sim t(k)$      | $T=\dfrac{Z}{\sqrt{V/n}}$, $Z\sim N(0,1)$, $V\sim χ²(n),\quad Z\perp V$，则$T\sim t(n)$         | $0\ (k>1)$                        | $\dfrac{k}{k-2}\ (k>2)$ (当 $k \to \infty$ 时趋近于1)                   |
+| F分布  | $X \sim F(m, n)$   | $F=\dfrac{U/n_1}{V/n_2}$, $U\sim χ²(n_1)$, $V\sim χ²(n_2),\quad U\perp V$，则$F\sim F(n_1,n_2)$ | $\dfrac{n}{n-2}$ (当 $n>2$) | $\dfrac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$ (当 $n>4$) |
 
-$$t^2 \sim F(1,n)$$
+```math
+t^2 \sim F(1,n)
+```
 
 卡方分布$χ²(2)$的概率密度函数是$f(x) = (1/2) e^{-x/2} for x > 0$，这正好是参数为$λ=1/2$的指数分布
 
@@ -97,8 +111,8 @@ $$t^2 \sim F(1,n)$$
 	- 离散：$P(X=x_i) = \sum_j P(X=x_i, Y=y_j)$ 
 	- 连续：$f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) dy$ ，这实际上是全概率公式的连续形式
 - **条件分布**：已知一个随机变量取值时，另一个随机变量的分布 
-	- 离散：$P(Y=y_j | X=x_i) = \dfrac{P(X=x_i, Y=y_j)}{P(X=x_i)}$ 
-	- 连续：$f_{Y|X}(y|x) = \dfrac{f_{X,Y}(x,y)}{f_X(x)}$
+	- 离散：$P(Y=y_j | X=x_i) = \dfrac{P(X=x_i, Y=y_j)}{P(X=x_i)}\quad(P(X=x_i)>0)$ 
+	- 连续：$f_{Y|X}(y|x) = \dfrac{f_{X,Y}(x,y)}{f_X(x)}\quad(f_X(x)>0)$
 
 - **乘法公式**： $f_{X,Y}(x,y) = f_{Y|X}(y|x) f_X(x) = f_{X|Y}(x|y) f_Y(y)$ 
 
@@ -107,6 +121,7 @@ $$t^2 \sim F(1,n)$$
 
 
 **独立性判断**： 
+
 - 定义：$F(x, y) = F_X(x) F_Y(y)$
 - $X$ 与 $Y$ 独立 $\iff f_{X,Y}(x,y) = f_X(x) f_Y(y)$ $\iff f_{Y|X}(y|x) = f_Y(y)$
 - 如果 $X$ 与 $Y$ 的支撑集是矩形，则：$f(x,y)=m(x)n(y) \implies \text{X与Y相互独立}$
@@ -114,67 +129,94 @@ $$t^2 \sim F(1,n)$$
 #### 离散和连续混合
 
 记住这个对应关系：密度函数对应点概率
+
 - $f_{X}(x) \sim P\{x=k\}$
 -  $\int \sim \sum$ 
 
-比如：$X$服从$N(0,1)$，$P(Y=k \mid X=x)=C^{k}_{2} x^{k}(1-x)^{k}$，则$P(Y=k,X=x)=P(Y=k \mid X=x) \times f_X(x)$，后者是一个“联合密度-质量函数”
+比如：$X$服从$U(0,1)$，$P(Y=k \mid X=x)=C^{k}_{2} x^{k}(1-x)^{2-k},\ k=0,1,2$，则$f_{X,Y}(x,k)=P(Y=k \mid X=x) \times f_X(x)$，后者是一个“联合密度-质量函数”
 
 
 #### 二元正态分布
 
 $(X,Y)\sim N(\mu_{1},\mu_{2},\sigma_{1},\sigma_{2},\rho)$，若$(U,V)=A(X,Y)$这一线性变换可逆，则$(U,V)$也服从二维正态分布
 
-**联合正态变量之间**的关系，要么是彻底的独立，要么是严格的线性关系，不可能存在非线性关系——如果我们只知道 `X`和 `Y`各自（边缘分布）都服从正态分布，但它们的联合分布**不是**二元正态分布，在这种情况下，`不相关`**完全不能**推出 `独立`。
+**联合正态变量之间**，不相关等价于独立，相关时不一定是严格的线性关系——如果我们只知道 `X`和 `Y`各自（边缘分布）都服从正态分布，但它们的联合分布**不是**二元正态分布，在这种情况下，`不相关`**完全不能**推出 `独立`。
 
 
 
 #### 函数的分布
 
-**对连续型随机变量 $X$，$F_X​(X)∼U(0,1)$**，因为$$P(Y≤t)=P(F_X​(X)≤t)=P(X≤F_{X}^{−1}​(t))=F_X​(F_{X}^{−1}​(t))=t$$
+**对连续型随机变量 $X$，$F_X​(X)∼U(0,1)$**，因为
+
+```math
+P(Y≤t)=P(F_X​(X)≤t)=P(X≤F_{X}^{−1}​(t))=F_X​(F_{X}^{−1}​(t))=t
+```
 
 ---
 
 $Z=G(x,y)$，则其分布函数为**联合密度函数**在区域上的积分：
-$$\begin{align}
+
+```math
+\begin{align}
 F_{z}(z)  &=  P\{Z \leq z\} = P\{g(X, Y) \leq z\} \\
 &= \iint\limits_{g(x,y) \leq z} f_{X,Y}(x, y) \, dx \, dy
-\end{align}$$
+\end{align}
+```
+
 在相互独立时，可以转为$X$与$Y$各自在区域上积分，也就是最常见的考试形式
 
 其密度函数的求解
 
 法一：先求分布函数再求导，这是最常用的，定义法
 
-法二：将$f_Z​(z)$视作是 $(Z,W)$ 联合密度的**边际分布**：$$f_{Z}​(z)= \int^{\infty}_{-\infty} f_{Z,W}(z,w) dw$$ 而联合密度函数之间存在雅可比变换$$
+法二：将$f_Z​(z)$视作是 $(Z,W)$ 联合密度的**边际分布**：
+
+```math
+f_{Z}​(z)= \int^{\infty}_{-\infty} f_{Z,W}(z,w) dw
+```
+
+而联合密度函数之间存在雅可比变换
+
+```math
 f_{Z,W}(z,w) = f_{X,Y}(x(z,w),y(z,w)) \cdot |J|, \quad J = \frac{\partial(x,y)}{\partial(z,w)}
-$$
-例如 $Z = X/Y$, 则取$W = Y$，则 $X = ZW$ ,  $Y = W$ ，$|J| = |w|$ ，$$f_{Z,Y}(z,y) = f_{X,Y}(zy, y) \cdot |y|, \quad f_Z(z) = \int_{-\infty}^{\infty} f_{X,Y}(zy, y) \, |y| \, dy$$
+```
+
+例如 $Z = X/Y$, 则取$W = Y$，则 $X = ZW$ ,  $Y = W$ ，$|J| = |w|$ ，
+
+```math
+f_{Z,Y}(z,y) = f_{X,Y}(zy, y) \cdot |y|, \quad f_Z(z) = \int_{-\infty}^{\infty} f_{X,Y}(zy, y) \, |y| \, dy
+```
 
 特别地，连续且相互独立时转为
-$$
-f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(z - x) \, dx$$
+
+```math
+f_Z(z) = \int_{-\infty}^{\infty} f_X(zy) f_Y(y) \, |y| \, dy
+```
 
 
 
 ### 数字特征
 
-期望的线性性总是成立。在独立时，还有乘积性质
+在期望均有限时，期望的线性性总是成立。在独立时，还有乘积性质
 
 - $E(X) = \int_{-\infty}^{+\infty} x f(x) dx$
 - $E(aX + bY + c) = aE(X) + bE(Y) + c$
 - 若$X$与$Y$独立，则$E(XY) = E(X)E(Y)$
 
 方差
+
 - $D(X) = E(X^2) - [E(X)]^2$
 - $D(aX + b) = a^2 D(X)$
 - $D(X + Y) = D(X) + D(Y) + 2Cov(X, Y)$
 
 协方差
+
 - $Cov(X, Y) = E(XY) - E(X)E(Y)$
 - $Cov(aX + b, cY + d) = ac Cov(X, Y)$
-- $\rho_{XY} = \dfrac{Cov(X, Y)}{\sqrt{D(X)} \sqrt{D(Y)}}$
+- $\rho_{XY} = \dfrac{Cov(X, Y)}{\sqrt{D(X)} \sqrt{D(Y)}}\quad(0<D(X),D(Y)<\infty)$
 
 注意点：
+
 - 相关系数刻画的是线性相关的程度
 - 独立 ⇒ 不相关（反之不一定成立）
 - 对于**联合正态变量之间**，不相关 ⇔ 独立（二元正态或多元正态均成立）
@@ -182,12 +224,27 @@ f_Z(z) = \int_{-\infty}^{\infty} f_X(x) f_Y(z - x) \, dx$$
 
 #### 条件期望与方差
 
-条件期望：$$E[Y|X=x] = \int y f_{Y|X}(y|x) dy$$
-重期望公式：$$E[Y] = E[E[Y|X]]$$
-条件方差公式：$$Var(Y) = E[Var(Y|X)] + Var(E[Y|X])$$
+条件期望：
+
+```math
+E[Y|X=x] = \int y f_{Y|X}(y|x) dy
+```
+
+重期望公式：
+
+```math
+E[Y] = E[E[Y|X]]
+```
+
+条件方差公式：
+
+```math
+Var(Y) = E[Var(Y|X)] + Var(E[Y|X])
+```
+
 > 先验方差 = 后验方差的期望 + 后验期望的方差
 
-$$
+```math
 \begin{align*}
 E[E(Y|X)] &= \int E(Y|X = x) f_X(x) dx \\
 &= \int \left( \int y f_{Y|X}(y|x) dy \right) f_X(x) dx \\
@@ -196,18 +253,33 @@ E[E(Y|X)] &= \int E(Y|X = x) f_X(x) dx \\
 &= \int y \left( \int f(x, y) dx \right) dy \\
 &= \int y f_Y(y) dy = E(Y)
 \end{align*}
-$$
+```
 
 ### 数理统计
 
 
 不等式
-$$X\geq0,P(X \geq \epsilon) \leq \frac{E(X)}{\epsilon} \quad (\epsilon > 0)$$
-$$P(|X - E(X)| \geq \epsilon) \leq \frac{D(X)}{\epsilon^2} \quad (\epsilon > 0)$$
-中心极限定理，描述了样本均值趋于正态
-$$\frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n}\sigma} \xrightarrow{d} N(0,1)$$
+
+```math
+X\geq0,P(X \geq \epsilon) \leq \frac{E(X)}{\epsilon} \quad (\epsilon > 0)
+```
+
+```math
+P(|X - E(X)| \geq \epsilon) \leq \frac{D(X)}{\epsilon^2}\quad(E(X^2)<\infty) \quad (\epsilon > 0)
+```
+
+中心极限定理，描述了标准化后的样本均值依分布趋于正态
+
+```math
+\frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n}\sigma} \xrightarrow{d} N(0,1)\quad(X_k\overset{\mathrm{i.i.d.}}{\sim}F,\ E(X_k)=\mu,\ 0<\sigma^2=D(X_k)<\infty)
+```
+
 设$Y_n \sim B(n,p)$，则，注意此处是随机变量本身趋于正态。同样地，泊松分布也有类似趋向：  
-  $$\frac{Y_n - np}{\sqrt{np(1-p)}} \xrightarrow{d} N(0,1)$$  
+
+  ```math
+  \frac{Y_n - np}{\sqrt{np(1-p)}} \xrightarrow{d} N(0,1)\quad(0<p<1)
+  ```
+
 #### 统计量
 
 - $S^2=\dfrac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2 = \dfrac{1}{n-1} (\sum_{i=1}^n X_i^2- n \bar{X}^2)$
@@ -215,13 +287,15 @@ $$\frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n}\sigma} \xrightarrow{d} N(0,1)$$
 
 
 正态总体：
+
   - 样本均值：$\bar{X}\sim N(\mu,\dfrac{\sigma^2}{n})$
   - 样本方差：$\dfrac{(n-1)S^2}{\sigma^2}\sim χ²(n-1)$，也就是$\dfrac{\sum_{i=1}^n (X_i-\bar{X})^2}{\sigma^{2}}$
   - $\bar{X}$ 与 $S^2$ 相互独立
   - 可以推导出：$\dfrac{\bar{X}-\mu}{S/\sqrt{n}}\sim t_{n-1}$
 
 似然函数：
-- $L(θ)=\prod_{i=1}^n f(x_i;θ)=\prod_{i=1}^{n}P\{x=x_{i}, \theta\}$
+
+- $L(θ)=\prod_{i=1}^n f(x_i;θ)$
 - 无偏性：$E(\hat{θ})=θ$
 - 有效性：无偏时，方差越小越有效
 - 均方误差：$MSE=E[(\hat{θ}-θ)^2]$
@@ -238,7 +312,7 @@ $$\frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n}\sigma} \xrightarrow{d} N(0,1)$$
 - 给定置信水平$1-\alpha$
 	- 双侧：选择常数$a,b$，使得$P_{\theta} \{a<G(X_i,\theta)<b\}=1-\alpha$
 	- 单侧：只须一个常数
-- 常用：习惯上使得$P\{a \leq G\}= P\{G \leq b\} = \frac{\alpha}{2}$，保持对称
+- 常用：习惯上使得$P\{G \leq a\}= P\{G \geq b\} = \frac{\alpha}{2}$，保持对称
 
 
 #### 假设检验
@@ -250,7 +324,7 @@ $$\frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n}\sigma} \xrightarrow{d} N(0,1)$$
 
 不想理解就记这个：
 
-![file-20251220214656151.png](/概统笔记/assets/概统笔记/file-20251220214656151.png)
+![](file-20251220214656151.png)
 
 
 **希望支持的是备择假设**，但假设成立的是$H_0$。希望数据能提供足够证据拒绝 $H_0$​，从而支持 $H_1$​。但整个检验方法是建立在保护 $H_0$​的基础上的
@@ -258,7 +332,10 @@ $$\frac{\sum_{k=1}^n X_k - n\mu}{\sqrt{n}\sigma} \xrightarrow{d} N(0,1)$$
 所以，**拒绝域形式的选择的原则是：原假设成立下，更能支持备择假设的统计量区间作为拒绝域形式**
 
 弃真错误，存伪错误：
-$$\begin{align*}
+
+```math
+\begin{align*}
 \alpha &= P(\text{拒绝 } H_0 \mid H_0 \text{ 为真}) \\[4pt]
 \beta  &= P(\text{未拒绝 } H_0 \mid H_0 \text{ 为假})
-\end{align*}$$
+\end{align*}
+```

@@ -40,3 +40,13 @@ theme = 'PaperMod'
     name = '英语小作文讲解'
     url = '/英语小作文讲解/'
     weight = 8
+
+# Preserve TeX before Markdown interprets underscores, backslashes and table pipes.
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [['\[', '\]'], ['$$', '$$']]
+    inline = [['\(', '\)'], ['$', '$']]
+
+[markup.goldmark.renderer]
+  unsafe = true # The notes use <br> for line breaks within tables.

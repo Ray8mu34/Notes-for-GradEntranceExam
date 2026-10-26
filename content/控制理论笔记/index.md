@@ -1,11 +1,12 @@
 ---
-title: "控制理论笔记"
+title: "控制理论公式与结论汇总"
 date: 2026-03-30
+lastmod: 2026-10-26
 ---
 
 ### 控制系统结构
 
-![控制系统结构](./file-20251108164032941.png)
+![](file-20251108164032941.png)
 
 参考输人元件、比较元件、控制元件、执行元件、被控对象、反馈元件 六个基本单元组成
 
@@ -29,11 +30,14 @@ date: 2026-03-30
 
 
 相似系统的微分方程不见得完全一致，特征方程肯定是一致的。下面每组中的变量，建立微分方程是一致的
+
 - 电流方程 - 速度方程 - 角速度方程，都是一阶导+一阶积分
 
 因此，如果使用电流阻抗$U(s)/I(s)$，机械阻抗$F(s)/V(s)$，可以统一如下。但建议不要过分追求阻抗表达式的形式相似，而是关注微分方程的整体形式
 
-$$Q=CV, \Psi=LI$$
+```math
+Q=CV, \Psi=LI
+```
 
 | 电路                                                                  | 平动                                                                        | 转动                                                                                             | $U(s)/I(s),F(s)/V(s)$ |
 | :------------------------------------------------------------------ | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------- |
@@ -53,8 +57,13 @@ $$Q=CV, \Psi=LI$$
 #### 方块图
 
 
-$$ T = \frac{\sum_{k=1}^{n} P_k \Delta_k}{\Delta} $$
-$$ \Delta = 1 - \sum L_1 + \sum L_2 - \sum L_3 + \cdots $$
+```math
+T = \frac{\sum_{k=1}^{n} P_k \Delta_k}{\Delta} 
+```
+
+```math
+\Delta = 1 - \sum L_1 + \sum L_2 - \sum L_3 + \cdots 
+```
 
 $\Delta_k$: 第$k$条前向通路的余因子，即从$\Delta$中**去除所有与第$k$条前向通路相接触的回路**的增益项后所得的值
 
@@ -63,7 +72,8 @@ $\Delta_k$: 第$k$条前向通路的余因子，即从$\Delta$中**去除所有�
 
 #### 传递函数
 
-**开环传递函数**​ 的定义是：**在反馈回路断开**的情况下，从施加在控制器/被控对象 `G(s)`输入端的信号，**到反馈点（比较点之前）** 的信号之间的传递函数
+**开环传递函数**​ 的定义是：**在反馈回路断开**的情况下，从施加在控制器/被控对象 `G(s)`输入端的信号，**到反馈点（比较点之前）** 的信号之间的传递函数
+
 - $G$，前向通道传递函数
 - $GH$，开环传递函数
 - $\dfrac{G}{1+GH}$，闭环传递函数
@@ -77,49 +87,88 @@ $\Delta_k$: 第$k$条前向通路的余因子，即从$\Delta$中**去除所有�
 | $\delta(t)$    | $1$                            |
 | $u(t)$         | $\dfrac{1}{s}$                 |
 | $t$            | $\dfrac{1}{s^2}$               |
-| $\frac{t^n}{n!}$            | $\dfrac{1}{s^n}$               |
+| $\frac{t^n}{n!}$            | $\dfrac{1}{s^{n+1}}$               |
 | $e^{at}$       | $\dfrac{1}{s-a}$               |
 | $\sin\omega t$ | $\dfrac{\omega}{s^2+\omega^2}$ |
 | $\cos\omega t$ | $\dfrac{s}{s^2+\omega^2}$      |
 
-$$\mathcal{L}[f^{(n)}(t)] = s^n F(s) - \sum_{k=1}^n s^{n-k}f^{(k-1)}(0)$$
-$$\mathcal{L}[f(t-a)u(t-a)] = e^{-as}F(s)$$
-$$\mathcal{L}[e^{at}f(t)] = F(s-a)$$
-$$周期函数：F(s) = \mathcal{L}\{f(t)\} = \sum_{n=0}^{\infty} \mathcal{L}\{f_1(t - nT)=\sum_{n=0}^{\infty} e^{-nTs}F_{1}(s)=F_{1}(s)\sum_{n=0}^{\infty}\left(e^{-s T}\right)^{n}\}$$
+```math
+\mathcal{L}[f^{(n)}(t)] = s^n F(s) - \sum_{k=1}^n s^{n-k}f^{(k-1)}(0)
+```
+
+```math
+\mathcal{L}[f(t-a)u(t-a)] = e^{-as}F(s)
+```
+
+```math
+\mathcal{L}[e^{at}f(t)] = F(s-a)
+```
+
+```math
+周期函数：F(s) = \mathcal{L}\{f(t)\} = \sum_{n=0}^{\infty} \mathcal{L}\{f_1(t - nT)=\sum_{n=0}^{\infty} e^{-nTs}F_{1}(s)=F_{1}(s)\sum_{n=0}^{\infty}\left(e^{-s T}\right)^{n}\}
+```
+
 推导：
 
-![周期函数推导](./8FFFE27DF7D0B68450D300704EB74F35.png)
+![](8FFFE27DF7D0B68450D300704EB74F35.png)
 
-终值：$sF(s)$的所有极点都必须位于 s 平面的左半平面（LHP）或在原点处**至多有一个一阶极点**。
+终值：$F(s)$的所有极点都必须位于 s 平面的左半平面（LHP）或在原点处**至多有一个一阶极点**。
 
 
 ##### 部分分式展开
 
-**单极点情形**（$k_i=1$）： $$A_i = \lim_{x \to a_i} (x-a_i) \frac{P(x)}{Q(x)} = \frac{P(a_i)}{Q'(a_i)}$$ 其中 $Q'(x)$ 是分母的导数。 
+**单极点情形**（$k_i=1$）：
 
-**重极点情形**（$k_i>1$）： 设 $(x-a)^k$ 为重因式，则系数 $A_j$（$j=1,\cdots,k$）为： $$A_j = \frac{1}{(k-j)!} \lim_{x \to a} \frac{d^{k-j}}{dx^{k-j}} \left[ (x-a)^k \frac{P(x)}{Q(x)} \right]$$
+```math
+A_i = \lim_{x \to a_i} (x-a_i) \frac{P(x)}{Q(x)} = \frac{P(a_i)}{Q'(a_i)}
+```
+
+其中 $Q'(x)$ 是分母的导数。 
+
+**重极点情形**（$k_i>1$）： 设 $(x-a)^k$ 为重因式，则系数 $A_j$（$j=1,\cdots,k$）为：
+
+```math
+A_j = \frac{1}{(k-j)!} \lim_{x \to a} \frac{d^{k-j}}{dx^{k-j}} \left[ (x-a)^k \frac{P(x)}{Q(x)} \right]
+```
+
 $j$ 越大，即**分母的幂次越高，求导次数越少**，记住
 
 
 #### 状态空间
 
 ##### 转移矩阵
-$$\Phi(s)=(SI-A)^{-1}$$
-$$\phi(t)=\mathcal{L}^{-1}[\Phi(s)]=T\text{diag}(e^{\lambda_it})T^{-1}$$
+
+```math
+\Phi(s)=(SI-A)^{-1}
+```
+
+```math
+\phi(t)=\mathcal{L}^{-1}[\Phi(s)]=T\text{diag}(e^{\lambda_it})T^{-1}
+```
+
 这里的T是将A对角化的矩阵
 
 状态方程的解：
-$$\begin{align}
+
+```math
+\begin{align}
 x(t) &= \phi(t-t_0)x(t_0) + \int_{t_0}^t \phi(t-\tau)Bu(\tau)d\tau\\
 &= \phi(t)x(0) + \int_{0}^t \phi(t-\tau)Bu(\tau)d\tau\\
-&= \phi(t)x(0) + \phi(t)* Bu(t)\end{align}$$
+&= \phi(t)x(0) + \phi(t)* Bu(t)
+\end{align}
+```
 
-变传递函数：$$G(s) = C(sI-A)^{-1}B + D$$
+变传递函数：
+
+```math
+G(s) = C(sI-A)^{-1}B + D
+```
+
 ##### 传递函数化状态空间
 
-![传递函数化状态空间1](./8A29379532B2A10F08559FD7ECA5D12A.png)
+![](8A29379532B2A10F08559FD7ECA5D12A.png)
 
-![传递函数化状态空间2](./FFE4A805B7382B83156CE3F005DBFA9B.png)
+![](FFE4A805B7382B83156CE3F005DBFA9B.png)
 
 
 ### 连续系统时域
@@ -128,55 +177,91 @@ x(t) &= \phi(t-t_0)x(t_0) + \int_{t_0}^t \phi(t-\tau)Bu(\tau)d\tau\\
 
 必要性：当其传递函数特征方程（分母等于零的方程）的**最高次项系数化为正数**后，**所有系数都必须为正**
 
-![劳斯判据](./file-20251020191630131.png)
+![](file-20251020191630131.png)
 
 - 遇到第一列是0
 	- 改写方程为$s=1/t$，重新计算
 	- 假设为非常小的正数$\epsilon$
 - 遇到全0行
 	- 上一行方程，求导得到这一行的系数
-	- 上一行方程的解，就是震荡频率
-	- 出现是s的奇数次方行
+	- 上一行方程的纯虚根$\pm j\omega$对应震荡频率$\omega$
+	- 可出现在s的奇数或偶数次方行
 
-全零行意味着一对相反实根或共轭虚根
+全零行意味着存在关于原点对称的根
 
 劳斯表很大的时候可以缩放，但是**只能使用正数**进行缩放（乘以或除以一个正数）
 
 #### 一阶惯性
 
-闭环：$$\dfrac{K}{1+Ts}$$
+闭环：
+
+```math
+\dfrac{K}{1+Ts}
+```
+
 阶跃响应指标：
-- 时间常数：$T$，达到稳态的$0.618$倍
+
+- 时间常数：$T$，达到稳态的$0.632$倍
 - $\%5$误差时间：$3T$
 - $\%2$误差时间：$4T$
 
 #### 二阶系统
 
-闭环：$$G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_ns + \omega_n^2}$$
-$$s_{1,2} = -\zeta\omega_n \pm \omega_n\sqrt{\zeta^2-1}$$
-开环：$$G(s) = \frac{\omega_n^2}{s(s+2\zeta\omega_n)}$$
+闭环：
+
+```math
+G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_ns + \omega_n^2}
+```
+
+```math
+s_{1,2} = -\zeta\omega_n \pm \omega_n\sqrt{\zeta^2-1}
+```
+
+开环：
+
+```math
+G(s) = \frac{\omega_n^2}{s(s+2\zeta\omega_n)}
+```
+
 研究的是欠阻尼情况的暂态响应，临界阻尼和过阻尼都没有超调。临界阻尼是无超调最快上升系统
 
 研究的是**阶跃响应**
 系统的震荡周期是$\dfrac{2\pi}{w_d}$，包络线是$e^{-\zeta\omega_nt}$，
 
-$$g(t) = 1-\frac{1}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_nt}\sin(\omega_d t+\arccos \zeta)$$
+```math
+g(t) = 1-\frac{1}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_nt}\sin(\omega_d t+\arccos \zeta)
+```
+
 记住：$\beta=\arccos \zeta = \arctan \dfrac{\sqrt{1-\zeta^{2}}}{\zeta}$
 
-![二阶系统阶跃响应](./256275EABBB3AEC86689DD1AF386635F.png)
+![](256275EABBB3AEC86689DD1AF386635F.png)
 
 
-#### 稳态误差
+#### 闭环稳定时单位典型输入的稳态误差
 
 在没有额外规定的情况下，**误差指的是方块图中求和器的输出**，即输入信号与反馈信号的差
 
-只要$E(s)$满足$$\frac{E(s)}{R(s)}=\frac{1}{1+GH}$$的形式，就可以根据$GH$ 来定义误差系数。注意**分子一定要是1**
+只要$E(s)$满足
+
+```math
+\frac{E(s)}{R(s)}=\frac{1}{1+GH}
+```
+
+的形式，就可以根据$GH$ 来定义误差系数。注意**分子一定要是1**
+
 - GH的积分环节数量决定了系统的型别
 - 所谓的等效单位负反馈，是令特征式等效而非系统的误差等效！求和器处的误差不是一个东西了
 
 
-核心，终值定理：$$e_{ss} = \lim_{t\to\infty} e(t) = \lim_{s\to0} sE(s)$$
-$$K_{n} = \lim_{s\to0} s^{n}G_k(s)$$
+核心，终值定理：
+
+```math
+e_{ss} = \lim_{t\to\infty} e(t) = \lim_{s\to0} sE(s)
+```
+
+```math
+K_{n} = \lim_{s\to0} s^{n}G_k(s)
+```
 
 | 系统型别 | $K_p$    | $K_v$    | $K_a$ | 阶跃$e_{ss}$      | 斜坡$e_{ss}$    | 抛物线$e_{ss}$   |
 | ---- | -------- | -------- | ----- | --------------- | ------------- | ------------- |
@@ -187,7 +272,12 @@ $$K_{n} = \lim_{s\to0} s^{n}G_k(s)$$
 
 #### 根轨迹
 
-写出首一标准型$$G_k(s) = K_g \frac{\prod_{i=1}^m (s - z_i)}{\prod_{j=1}^n (s - p_j)}$$
+写出首一标准型
+
+```math
+G_k(s) = K_g \frac{\prod_{i=1}^m (s - z_i)}{\prod_{j=1}^n (s - p_j)}
+```
+
 （负反馈下）特征方程：$1+GH=0$，其中$GH$是首一标准型，**一定要是首一**，这样才能确定绘制的是0度还是180度根轨迹。
 
 **核心是确定$\dfrac{\prod_{i=1}^m (s - z_i)}{\prod_{j=1}^n (s - p_j)}$的相角是180度还是0度**！
@@ -202,7 +292,7 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 - 确定实轴上的根轨迹
 - 确定渐近线的交点、方向
 - 如果是复数极点，要求出射角
-- 如果有分离，要求分离点，**分离点/汇合点方程是一个 (m+n-1) 阶的方程**
+- 如果有分离，要求分离点，**当$m\ne n$时，分离点/汇合点方程是一个 (m+n-1) 阶的方程**
 - 如果有虚轴交点，要求出来
 
 
@@ -210,40 +300,67 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 
 2. **渐近线**：
    - 渐近线方向角：
-     $$\theta_k = \frac{(2k+1)\pi}{n-m}, \quad k=0,1,\dots,|n-m|-1$$
+
+     ```math
+     \theta_k = \frac{(2k+1)\pi}{n-m}, \quad k=0,1,\dots,|n-m|-1
+     ```
+
    - 渐近线交点：
-     $$\sigma_a = \frac{\sum p_j - \sum z_i}{n-m}$$
+
+     ```math
+     \sigma_a = \frac{\sum p_j - \sum z_i}{n-m}
+     ```
 
 3. **分离点与会合点**：
    - 满足方程：
-     $$\sum \frac{1}{d - p_j} = \sum \frac{1}{d - z_i}$$
+
+     ```math
+     \sum \frac{1}{d - p_j} = \sum \frac{1}{d - z_i}
+     ```
+
    - 或解$\frac{dK_g}{ds}=0$
    - 分离角：有n条汇入，就有n条汇出，则每条的夹角为$\dfrac{(2k)\pi}{2n}$，且为一进一出交替。这么看射出的夹角则是$\dfrac{(2k)\pi}{n}$
 
 4. **出射角与入射角**：
    - 出射角（从开环极点$p_l$）：
-     $$\theta_{p_l} = (2k+1)\pi + \left( \sum \angle(p_l - z_i) - \sum_{j \neq l} \angle(p_l - p_j) \right)$$
+
+     ```math
+     \theta_{p_l} = (2k+1)\pi + \left( \sum \angle(p_l - z_i) - \sum_{j \neq l} \angle(p_l - p_j) \right)
+     ```
+
    - 入射角（至开环零点$z_l$）：
-     $$\theta_{z_l} = (2k+1)\pi - \left( \sum_{i \neq l} \angle(z_l - z_i) - \sum \angle(z_l - p_j) \right)$$
+
+     ```math
+     \theta_{z_l} = (2k+1)\pi - \left( \sum_{i \neq l} \angle(z_l - z_i) - \sum \angle(z_l - p_j) \right)
+     ```
 
 4. **虚轴交点**：令$s=j\omega$代入特征方程，解实部、虚部方程
 
-![根轨迹与虚轴交点](./D73AEF4DB67E0922859F46CE08C81723.png)
+![](D73AEF4DB67E0922859F46CE08C81723.png)
 
 ##### 其他
 
 0度根轨迹就是相角条件变成$2k \pi$，别的都不变。
- **绘制规则变化**：
-    - 实轴上的根轨迹：右侧开环零、极点数目之和为偶数
-    - 渐近线方向角：
-      $$\theta_k = \frac{2k\pi}{n-m}, \quad k=0,1,\dots,|n-m|-1$$
-    - 出射角/入射角公式中的$(2k+1)\pi$改为$2k\pi$
+**绘制规则变化**：
+
+- 实轴上的根轨迹：右侧开环零、极点数目之和为偶数
+- 渐近线方向角：
+
+  ```math
+  \theta_k = \frac{2k\pi}{n-m}, \quad k=0,1,\dots,|n-m|-1
+  ```
+
+- 出射角/入射角公式中的$(2k+1)\pi$改为$2k\pi$
 
 
 广义根轨迹就是
 将特征方程整理为：
-    $$1 + K \frac{P(s)}{Q(s)} = 0$$
-    其中$K$为可变参数，则等效开环传递函数为$G^*(s) = \frac{P(s)}{Q(s)}$
+
+```math
+1 + K \frac{P(s)}{Q(s)} = 0
+```
+
+其中$K$为可变参数，则等效开环传递函数为$G^*(s) = \frac{P(s)}{Q(s)}$
 
 
 增加一个开环零点会使根轨迹向零点方向弯曲。零点吸引根轨迹的分支；增加左侧零点可以改善稳定性和速度，但可能增加超调
@@ -251,24 +368,26 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 
 ##### 根轨迹的几何意义
 
-![根轨迹几何意义](./1B96010871EF131D0C7CEDDE42EF573B.png)
+![](1B96010871EF131D0C7CEDDE42EF573B.png)
 
 ##### 根轨迹与阻尼比
 
 | 阻尼比 $\zeta$     | 系统状态     | 极点位置                                       | 根轨迹      | 单位阶跃响应特点             |
 | --------------- | -------- | ------------------------------------------ | -------- | -------------------- |
-| $\zeta < 0$     | 负阻尼（不稳定） | 正实部共轭复根 $s = \pm j\omega_n$                | 右半平面     | 发散振荡或发散              |
+| $\zeta < -1$ | 负阻尼（不稳定） | 两个不相等的正实根 $s=-\zeta\omega_n\pm\omega_n\sqrt{\zeta^2-1}$ | 正实轴 | 发散 |
+| $\zeta = -1$ | 负阻尼（不稳定） | 两个相等的正实根 $s=\omega_n$ | 正实轴 | 发散 |
+| $-1 < \zeta < 0$     | 负阻尼（不稳定） | 正实部共轭复根 $s = -\zeta\omega_n \pm j\omega_n\sqrt{1-\zeta^2}$                | 右半平面     | 发散振荡或发散              |
 | $\zeta = 0$     | 无阻尼      | 一对共轭纯虚根 $s = \pm j\omega_n$                | 虚轴交点     | 等幅振荡（临界稳定）（**临界震荡**） |
 | $0 < \zeta < 1$ | 欠阻尼      | 负实部共轭复根 $s = -\zeta\omega_n \pm j\omega_d$ | 左半平面     | 衰减振荡（有超调，最终稳定）       |
 | $\zeta = 1$     | 临界阻尼     | 两个相等的负实根 $s = -\omega_n$                   | 实轴上根轨迹交点 | **最快无超调**的单调上升       |
 | $\zeta > 1$     | 过阻尼      | 两个不相等的负实根                                  | 实轴上不相交   | 缓慢无超调的单调上升           |
 
-![根轨迹与阻尼比](./file-20251108170254835.png)
+![](file-20251108170254835.png)
 
 
 ##### 根轨迹与幅值裕度
 
-![根轨迹与幅值裕度](./BD65179963C1E24C9E467D389DA1D8AA.png)
+![](BD65179963C1E24C9E467D389DA1D8AA.png)
 
 根轨迹与虚轴的交点，即为$G(jw)=-1$的点，因而其其实反应了没有K的系统的幅值裕度，不难得到$G^{'}(jw)= \dfrac{G(jw)}{K}=-\dfrac{1}{K}$
 
@@ -277,11 +396,14 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 
 #### 采样关系
 
-奈奎斯特频率：$\omega_{s}=\dfrac{2 \pi}{T_{s}}>2\omega_{max}$，即采样频率为信号最高频率的两倍，才能无失真地提取信号。奈奎斯特频率特指那个**临界值**
+采样角频率：$\omega_{s}=\dfrac{2 \pi}{T_{s}}>2\omega_{max}$，即对带限信号，采样频率大于信号最高频率的两倍，才能无失真地提取信号。奈奎斯特采样率特指那个**临界值**$2\omega_{max}$，奈奎斯特频率为$\omega_s/2$
 
-![采样关系](./3EAD75F6351BEEAF9F9D85B42BDB95F3.png)
+![](3EAD75F6351BEEAF9F9D85B42BDB95F3.png)
 
-$$F(z)=F^{*}(\dfrac{\ln z}{T}),\\;\\;z=e^{Ts}$$
+```math
+F(z)=F^{*}(\dfrac{\ln z}{T}),\;\;\;z=e^{Ts}
+```
+
 连续信号$f$的z变换，与采样信号$f^{*}$的，是一致的
 
 #### 传递函数
@@ -293,7 +415,7 @@ $$F(z)=F^{*}(\dfrac{\ln z}{T}),\\;\\;z=e^{Ts}$$
 | 时域序列 $x[n]$ (其中 $n \ge 0$)  | Z变换 $X(z)$ (单边)                                                   | 收敛域 (ROC)                           |
 | --------------------------- | ----------------------------------------------------------------- | ----------------------------------- |
 | $\delta[n]$                 | $1$                                                               | 所有 $z$                              |
-| $\delta[n-a]$               | $\dfrac{1}{z^a}$                                                  | $z > a$                             |
+| $\delta[n-a]$               | $\dfrac{1}{z^a}$                                                  | $\begin{cases}\mathbb{C}\setminus\{0\},&a>0\\\mathbb{C},&a=0\end{cases}$                             |
 | $u[n]$                      | $\dfrac{z}{z-1}$                                                  | $\lvert z \rvert > 1$               |
 | $a^n u[n]$                  | $\dfrac{z}{z-a}$                                                  | $\lvert z \rvert > \lvert a \rvert$ |
 | $n u[n]$                    | $\dfrac{z}{(z-1)^2}$                                              | $\lvert z \rvert > 1$               |
@@ -313,47 +435,87 @@ $$F(z)=F^{*}(\dfrac{\ln z}{T}),\\;\\;z=e^{Ts}$$
 
 核心记住$a^n$，$u(n)$，然后推导Z变换的微分性质：时域乘$n$，等于$z$域微分再乘$-z$
 
-![Z变换性质](./E4DA073958F0BC386529E554EB10A3F9.png)
+![](E4DA073958F0BC386529E554EB10A3F9.png)
 
 初值定理：$f(0) = \lim_{z\to\infty}F(z)$，$f(1)=\lim_{z \rightarrow \infty} z[F(z)−f(0)]$
-终值定理：$f(\infty)=\lim_{z \rightarrow 1} (z-1)F(z)$，要求$F$ 除了在 z=1可以有一个单极点外，其它极点必须在单位圆内，也即$(z-1)F$ 的极点都在单位圆内
+终值定理：$f(\infty)=\lim_{z \rightarrow 1} (z-1)F(z)$，要求$F$ 除了在 z=1可以有一个单极点外，其它极点必须在单位圆内，也即$(z-1)F$ 的极点都在单位圆内
 
 ##### 零阶保持器
 
 积分器和时滞一个环节的积分器并联
-$$G_{ZOH}(s) = \frac{1-e^{-sT}}{s}$$
-$$g(t)=u(t)-u(t-T),\\;\\;\\; g(nT)=u(n)-u(n-1)$$
 
-性质：$$\mathcal{Z}[G_{ZOH}(s)G(s)]=(1-z^{-1})\mathcal{Z}[\frac{G(s)}{s}]$$
-$$\mathcal{Z}[G_{ZOH}]=1$$
+```math
+G_{ZOH}(s) = \frac{1-e^{-sT}}{s}
+```
+
+```math
+g(t)=u(t)-u(t-T),\;\;\;\; g(nT)=u(n)-u(n-1)
+```
+
+性质：
+
+```math
+\mathcal{Z}[G_{ZOH}(s)G(s)]=(1-z^{-1})\mathcal{Z}[\frac{G(s)}{s}]
+```
+
+```math
+\mathcal{Z}[G_{ZOH}]=1
+```
 
 
 #### 状态空间
 
 ##### 离散化
 
-$$A^{'}=\phi(T), \\;\\;\\;B^{'}=\phi(t)*B$$
+```math
+A^{'}=\phi(T), \;\;\;\;B^{'}=\int_0^T \phi(\tau)B\,d\tau
+```
+
 ##### 求解
-$$\begin{cases}
+
+```math
+\begin{cases}
 x(k+1) = \Phi x(k) + \Gamma u(k) \\
-y(k) = Cx(k) + Du(k)\end{cases}$$
-$$\Phi(z)=(zI-\Phi)^{-1}$$
-$$x(k) = \phi^k x(0) + \sum_{i=0}^{k-1} \phi^{k-1-i}\Gamma u(i)$$
+y(k) = Cx(k) + Du(k)
+\end{cases}
+```
+
+```math
+\Phi(z)=(zI-\Phi)^{-1}
+```
+
+```math
+x(k) = \phi^k x(0) + \sum_{i=0}^{k-1} \phi^{k-1-i}\Gamma u(i)
+```
+
 #### 劳斯与朱莉
 
-$$w = \frac{z-1}{z+1}, \quad z = \frac{1+w}{1-w}$$
+```math
+w = \frac{z-1}{z+1}, \quad z = \frac{1+w}{1-w}
+```
+
 将特征方程$D(z)=0$转换为$D(w)=0$，对$w$用劳斯。
 
 由朱莉判据，得到离散系统稳定的必要条件：
 
-$$\begin{align}
-P(1)&>0  \quad\text{保证极点不大于1}\\(-1)^{n}P(-1)&>0 \quad \text{保证极点不小于-1}\end{align}$$
+```math
+\begin{align}
+P(1)&>0\\
+(-1)^{n}P(-1)&>0
+\end{align}
+```
+
 对二阶系统，在此基础上附加$|a_0|<a_{2}$即可判别，这样不需要双线性变换
 
-#### 稳态误差
+#### 闭环稳定时单位典型输入的稳态误差
 
-$$K_a = \lim_{z\to1} \frac{1}{T^2} (z-1)^2G(z)$$
-$$K_{n} = \lim_{z\to1} \frac{1}{T^{n}} (z-1)^nG(z)$$
+```math
+K_a = \lim_{z\to1} \frac{1}{T^2} (z-1)^2G(z)
+```
+
+```math
+K_{n} = \lim_{z\to1} \frac{1}{T^{n}} (z-1)^nG(z)
+```
 
 | 输入信号                | 0型系统               | I型系统             | II型系统            |
 | ------------------- | ------------------ | ---------------- | ---------------- |
@@ -371,7 +533,7 @@ $$K_{n} = \lim_{z\to1} \frac{1}{T^{n}} (z-1)^nG(z)$$
 | 斜坡   | $(1-z^{-1})^2$ | 2拍   |
 | 抛物线  | $(1-z^{-1})^3$ | 3拍   |
 
-n阶输入，就令误差传递函数为n+1阶
+在满足对象延迟、零点约束，且所得控制器因果、闭环内部稳定时，n阶输入就令误差传递函数为n+1阶
 
 
 ### 频域分析
@@ -379,7 +541,9 @@ n阶输入，就令误差传递函数为n+1阶
 - **幅频特性**：$|G(j\omega)|$（输出/输入幅值比）
 * **相频特性**：$\angle G(j\omega)$（输出相位滞后量）
 
-$$ y_{ss}(t) = A \cdot |G(j\omega)| \cdot \sin\left[ \omega t + \angle G(j\omega) \right] $$
+```math
+y_{ss}(t) = A \cdot |G(j\omega)| \cdot \sin\left[ \omega t + \angle G(j\omega) \right] 
+```
 
 低频段反映了控制系统的静态特性
 中频段反映了系统的动态特性
@@ -389,38 +553,44 @@ $$ y_{ss}(t) = A \cdot |G(j\omega)| \cdot \sin\left[ \omega t + \angle G(j\omega
 
 ##### 幅频特性
 
-   - 分解为典型环节乘积形式（**尾一标准型**）  
-   - 确定各环节的**转折频率** $\omega_i$  
-   - **低频段**（$\omega < \min(\omega_i)$）：  只看$s$和$1/s$，系统变成$k/s$这种形式
-     * 斜率 $= -20 \times v \ \text{dB/dec}$（$v$ = 系统型别/积分环节数）  
-     * 确定起始点的方法：令$\dfrac{K}{w^{v}}=1$，即可求得与横轴的交点，然后倒推起始点
-   - 每经过一个转折频率，斜率按环节特性变化：
-    $$
-\begin{array}{|c|c|}
-\hline
-\textbf{环节类型} & \textbf{斜率变化量} \\
-\hline
-\text{一阶惯性环节} & -20\ \text{dB/dec} \\
-\hline
-\text{二阶振荡环节} & -40\ \text{dB/dec} \\
-\hline
-\end{array}
-$$
+- 分解为典型环节乘积形式（**尾一标准型**）  
+- 确定各环节的**转折频率** $\omega_i$  
+- **低频段**（$\omega < \min(\omega_i)$）：  只看$s$和$1/s$，系统变成$k/s$这种形式
+  * 斜率 $= -20 \times v \ \text{dB/dec}$（$v$ = 系统型别/积分环节数）  
+  * 确定起始点的方法：令$\dfrac{K}{w^{v}}=1$，即可求得与横轴的交点，然后倒推起始点
+- 每经过一个转折频率，斜率按环节特性变化：
+
+  ```math
+  \begin{array}{|c|c|}
+  \hline
+  \textbf{环节类型} & \textbf{斜率变化量} \\
+  \hline
+  \text{一阶惯性环节} & -20\ \text{dB/dec} \\
+  \hline
+  \text{二阶振荡环节} & -40\ \text{dB/dec} \\
+  \hline
+  \end{array}
+  ```
 
 最小相位系统：**对给定的幅频响应（即增益随频率的变化），最小相位系统具有最小的相位滞后**。所以易于控制
 最小相位系统的逆系统也是稳定的
 对于最小相位系统，幅频响应和相频响应是一一对应的
-如果一个系统有 n个极点和 m个零点，那么相位从 ω=0到 ω→∞的总变化量约为 −90∘×(n−m)，而非最小相位会比这个大
+如果一个系统有 n个极点和 m个零点，那么相位从 ω=0到 ω→∞的总变化量约为 −90∘×(n−m)，而非最小相位会比这个大
 
 ##### 二阶震荡环节的修正
 
 - 如果阻尼比很小，会有波峰
 - 振荡频率和震荡值
 
-$$w_{r}=w_{n}\sqrt{1-2 \zeta^2}$$
-$$M_{r}=\frac{1}{2\zeta \sqrt{1-\zeta^{2}}}$$
+```math
+w_{r}=w_{n}\sqrt{1-2 \zeta^2}
+```
 
-![二阶震荡环节](./8892F66F605C35ED990D2D2F26AC3B44.png)
+```math
+M_{r}=\frac{1}{2\zeta \sqrt{1-\zeta^{2}}}
+```
+
+![](8892F66F605C35ED990D2D2F26AC3B44.png)
 
 频带宽度（根本记不住……）
 
@@ -433,6 +603,7 @@ $$M_{r}=\frac{1}{2\zeta \sqrt{1-\zeta^{2}}}$$
 首先绘制w从0+到正无穷的部分：
 
 最小相位系统
+
 - 型别v决定起点
 	- 0型，$K \angle{0\degree}$
 	- v型，$\infty \angle{-90\degree}*v$
@@ -440,13 +611,13 @@ $$M_{r}=\frac{1}{2\zeta \sqrt{1-\zeta^{2}}}$$
 	- $0 \angle{(n-m)*-90\degree}$
 - 一型系统低频渐近线
 - 二型系统低频虚部正负：$\sum T_\text{分子}>\sum T_\text{分母}$，则为负
-	- 分子分母的时间常数会产生一个微小的附加相角 `φ = Σ(τ_分子) - Σ(τ_分母)`
+	- 分子分母的时间常数会产生一个微小的附加相角 `φ = Σ(τ_分子) - Σ(τ_分母)`
 - 存在纯虚根时，突变
 	- 积分环节：v型系统，补充从$0-$指向$0+$的$180\degree \times v$的圆弧（顺时针）
 	- $l$重震荡点处，相角突变$180\degree \times l$
 		- $l$重震荡点更准确的叫法是**l重纯虚根极点**，是**开环系统在虚轴上的极点**。对应的是$\Delta=0$的二次方程的解
 		- $l$重指的是有$l$个$j \omega_{0}$，因此$s^{2}+\omega_{0}^{2}=0$是1重
-	- 当奈奎斯特路径以半径为ρ的**极小圆弧**绕过虚轴上的极点 $s = jw_{0}$时，这个绕过动作在奈奎斯特图上映射为一个**半径为无穷大**的圆弧
+	- 当奈奎斯特路径以半径为ρ的**极小圆弧**绕过虚轴上的极点 $s = jw_{0}$时，这个绕过动作在奈奎斯特图上映射为一个**半径为无穷大**的圆弧
 
 而后，对称地画出w从0-到负无穷的部分
 
@@ -457,21 +628,26 @@ $P$：右侧开环极点数
 $Z$：闭环极点
 $Z=P-N$
 
-奈奎斯特判据严格成立的前提是，开环奈奎斯特曲线**不能恰好经过**(-1, j0)点。因为一旦穿过，就说明存在一个频率 ωc​使得 1+G(jωc​)H(jωc​)=0，即闭环系统有极点**正好位于虚轴**上。这属于“临界稳定”的工况
+奈奎斯特判据严格成立的前提是，开环奈奎斯特曲线**不能恰好经过**(-1, j0)点。因为一旦穿过，就说明存在一个频率 $ωc$​使得 $1+G(jωc​)H(jωc​)=0$，即闭环系统有极点**正好位于虚轴**上。这属于“临界稳定”的工况
 
 #### 频域稳定指标
 
 **剪切频率/增益穿越频率 $\omega_c$**：$|G(j\omega_c)| = 1$ 的频率点，记忆**剪切**频率。用Bode图求，代数法太难
 **相位穿越频率 $\omega_g$**：$\angle G(j\omega_g) = -180^\circ$ 的频率点，一般用代数法老实求反三角
 
-$$ \gamma = 180^\circ + \angle G(j\omega_c) $$
-$$ K_g = \frac{1}{|G(j\omega_g)|} $$
+```math
+\gamma = 180^\circ + \angle G(j\omega_c) 
+```
+
+```math
+K_g = \frac{1}{|G(j\omega_g)|} 
+```
 
 最小相位系统，闭环稳定$\iff$ $k_{g}>1,\gamma>0$
 
 剪切频率不仅影响系统的相位裕量，还影响动态过程的调整时间
 
-![频域稳定指标](./0F9AF551578C1B4A812FA3EBF06E47D7.png)
+![](0F9AF551578C1B4A812FA3EBF06E47D7.png)
 
 不适合非最小相位系统，尽管相位裕度为正，但由于非最小相位系统，相位裕度可能不能直接保证稳定性。例如$GH=\dfrac{5(s-1)}{s(s+1)(s+2)}$
 
@@ -484,12 +660,17 @@ $$ K_g = \frac{1}{|G(j\omega_g)|} $$
 
 #### 相平面法（时域）
 
-对自治系统：$$\ddot{x}+f(x,\dot{x})=0$$
+对自治系统：
+
+```math
+\ddot{x}+f(x,\dot{x})=0
+```
+
 以$x$为横轴，$\dot{x}$为纵轴做出轨迹图
 
-将非线性系统线性化，随后计算特征根，判定奇点类型
+将非线性系统线性化，随后计算特征根，在无零实部特征值时判定局部奇点类型
 
-| 奇点类型      | 特征值条件            | 稳定性  | 相轨迹行为         |
+| 线性二维系统的奇点类型 | 特征值条件            | 稳定性  | 相轨迹行为         |
 | --------- | ---------------- | ---- | ------------- |
 | **中心点**   | 纯虚数 λ = ±βi      | 中性稳定 | 闭合椭圆轨道，等幅振荡   |
 | **稳定焦点**  | 左半平面复数           | 渐近稳定 | 螺旋衰减趋近平衡点     |
@@ -497,18 +678,22 @@ $$ K_g = \frac{1}{|G(j\omega_g)|} $$
 | **稳定节点**  | 左半平面实数           | 渐近稳定 | 无超调直接趋近平衡点    |
 | **不稳定节点** | 右半平面实数           | 不稳定  | 指数发散远离平衡点     |
 | **鞍点**    | 一正一负实数 λ₁<0,λ₂>0 | 不稳定  | 某些方向趋近，某些方向发散 |
+
 节点：实数
 焦点：复数
+
 ##### 三种绘制方法
 
 解析法：求出$x$ 与 $\dot{x}$ 的关系，就可以直接画图
 等倾斜线法：
+
 1. 相轨迹的斜率是$\dfrac{d\dot{x}}{dx}$，也就是$\dfrac{\ddot{x}}{\dot{x}}$
 2. 令斜率为$\alpha$，也即$\ddot{x}=\alpha \dot{x}$，代入原方程，求解出$\dot{x}$与$x$的关系——等倾斜线方程
 3. 给定$\alpha$，该方程对应一条曲线，在曲线上画出斜率为$\alpha$的线段，这就是相轨迹的一部分
 4. 用这样的一系列线段拼接出相轨迹
 
 $\delta$法：原圆弧来拼接
+
 1. 令$-f(x,\dot{x})+w^{2}x=\delta$，其中$w$是给定值，$\ddot{x}+f=0$
 2. 则有$\ddot{x}+w^{2}x=\delta$，这是一个简谐振动的方程
 3. 实际做图步骤
@@ -527,10 +712,12 @@ $\delta$法：原圆弧来拼接
 
 最复杂的是$\alpha$相线，记住。因为方程解出来了也不会画
 
-$$T \ddot{x}+\dot{x}=M$$
+```math
+T \ddot{x}+\dot{x}=M
+```
 
 
-![典型二阶环节相轨迹](./0A6AFC7C6ED8399DE71AA5B96DF16DC4.png)
+![](0A6AFC7C6ED8399DE71AA5B96DF16DC4.png)
 
 #### 描述函数法（频域）
 
@@ -540,28 +727,41 @@ $$T \ddot{x}+\dot{x}=M$$
 
 研究输入为0的条件下的稳定性和自激振荡！
 
-![描述函数法](./file-20251105160705120.png)
+![](file-20251105160705120.png)
 
-$$y=y(x), x=Asin(wt) \implies y=y(t)$$
+```math
+y=y(x), x=Asin(wt) \implies y=y(t)
+```
+
 而后对$y(t)$做傅里叶变换，求出系数$A_1$，此时$w=1$，而后取$T=2\pi$代入即可：
 
-$$B_{1}=\frac{2}{T} \int^{\frac{T}{2}}_{\frac{-T}{2}} y(t) A \sin(1* \frac{2\pi}{T}t)dt=\frac{2}{\pi} \int^{\pi}_{0} y(t) A \sin(1* t)dt$$
-则$$N(A)=\dfrac{B_{1}}{A}+j\dfrac{A_{1}}{A}$$
+```math
+B_{1}=\frac{2}{T} \int^{\frac{T}{2}}_{\frac{-T}{2}} y(t) \sin(1* \frac{2\pi}{T}t)dt=\frac{2}{\pi} \int^{\pi}_{0} y(t) \sin(1* t)dt
+```
+
+则
+
+```math
+N(A)=\dfrac{B_{1}}{A}+j\dfrac{A_{1}}{A}
+```
+
 单值非线性环节的基波分量没有相位移，$A_1$ 就是$0$，描述函数是实数
 在有回环的时候，$y$ 不是奇函数，$A_{1}$不是0！（考试不会考这么难，因为交点算不了！）
 
 
 作出$\dfrac{-1}{N(A)}$图和$G(s)$的奈奎斯特图，在复平面上观察
-- 对于**所有**$A > 0$，点$−1/N(A)$都**不被**$G(jω)$曲线包围，即相离，且负一倒在外侧，那么非线性系统是**渐近稳定**的（没有自激振荡）
-- 对于**所有**$A > 0$，点$−1/N(A)$都**被**$G(jω)$曲线包围，那么非线性系统是**不稳定**的（没有自激振荡）
-- 如果存在某些$A$使得$−1/N(A)$被包围，也即曲线**相交**，那么系统**可能**存在自激振荡
-- 交点可能形成稳定极限环，要看幅值$A$变大之后是否会回归——在**被包围部分，A会越来越大**；不被包围部分，A会越来越小
 
-> **想象你是一个小人，沿着奈奎斯特曲线 G(jω)前进（随着频率 ω从 0+到 +∞的方向）。让你的左手始终指向曲线包围的区域内部。此时，如果你的左手边是 −N(A)1​曲线，那么我们就说 G(jω)包围了 −N(A)1​。**
+- 对于**所有**$A > 0$，点$−1/N(A)$都**不被**$G(jω)$曲线包围，即相离，且负一倒在外侧，那么在描述函数近似下，非线性系统被预测为**渐近稳定**的（没有自激振荡）
+- 对于**所有**$A > 0$，点$−1/N(A)$都**被**$G(jω)$曲线包围，那么在描述函数近似下，非线性系统被预测为**不稳定**的（没有自激振荡）
+- 如果存在某些$A$使得$−1/N(A)$被包围，也即曲线**相交**，那么在描述函数近似下，系统**可能**存在自激振荡
+- 在描述函数近似下，交点可能形成稳定极限环，要看幅值$A$变大之后是否会回归——在**被包围部分，A会越来越大**；不被包围部分，A会越来越小
+
+> **想象你是一个小人，沿着奈奎斯特曲线 G(jω)前进（随着频率 ω从 0+到 +∞的方向）。让你的左手始终指向曲线包围的区域内部。此时，如果你的左手边是 −N(A)1​曲线，那么我们就说 G(jω)包围了 −N(A)1​。**
 
 其实这里也是奈奎斯特，本质上还是要$P-N$来看。但是书上好像一般介绍的都是$P=0$的线性系统，因此简化为是否包围
 
 对于不是单位负反馈，单个非线性环节串联单个线性环节的
+
 - 写出特征方程
 - 将特征方程化为$1+NG=0$的形式，得到等效的线性环节$G$
 
@@ -584,8 +784,8 @@ $$B_{1}=\frac{2}{T} \int^{\frac{T}{2}}_{\frac{-T}{2}} y(t) A \sin(1* \frac{2\pi}
 | PI控制器  | $K_p(1 + \dfrac{1}{T_i s})$                                 | 消除稳态误差             |
 | PD控制器  | $K_p(1 + T_d s)$ (近似)                                       | 提高响应速度，抑制超调        |
 | PID控制器 | $K_p(1 + \dfrac{1}{T_i s} + T_d s)$ (近似)                    | 综合性能优良，应用最广        |
-| 超前校正   | $G(s)=\dfrac{1+ T s}{1+\alpha Ts},\\;\alpha>1$               | 正相位，高通滤波           |
-| 滞后校正   | $G(s)=\dfrac{1+ T s}{1+\beta Ts},\\;\beta<1$                 | 负相位，低通滤波，可以增大相位裕量  |
+| 超前校正   | $G(s)=\dfrac{1+ T s}{1+\alpha Ts},\;0<\alpha<1$               | 正相位，高通滤波           |
+| 滞后校正   | $G(s)=\dfrac{1+ T s}{1+\beta Ts},\;\beta>1$                 | 负相位，低通滤波，可以增大相位裕量  |
 | 超前滞后   |                                                             |                    |
 
 | 类型           | 频域                                 | 时域误差           | 稳定性 | 响应速度           | 滤波特性                          |
@@ -596,12 +796,13 @@ $$B_{1}=\frac{2}{T} \int^{\frac{T}{2}}_{\frac{-T}{2}} y(t) A \sin(1* \frac{2\pi}
 
 超前滞后对应PID控制器。在低频段是滞后作用，改善静态；在高频段是超前，改善动态
 
-![校正器设计](./file-20251212105033935.png)
+![](file-20251212105033935.png)
 
 四种矫正方式：前馈、反馈、串联、混合。
 校正的目的是：不稳定变稳定；稳定的动态静态性能变好
 
 给定时域指标，用根轨迹方法设计；给定频域指标，用频域法
+
 - $t_s$、$t_{r}$、$t_{p}$、$\sigma_{p}$
 - $\gamma$、$h$、$M_{r}$、$\omega_{r}$、$\omega_{b}$
 
@@ -612,18 +813,22 @@ $$B_{1}=\frac{2}{T} \int^{\frac{T}{2}}_{\frac{-T}{2}} y(t) A \sin(1* \frac{2\pi}
 
 ---
 
-希望网络的相位是超前的（正的），零点部分的时间常数更小。是高通滤波
+希望网络的相位是超前的（正的），零点部分的时间常数更大。是高通滤波
 
-$$G(s)=\dfrac{1+ T s}{1+\alpha Ts},\\;\alpha>1$$
+```math
+G(s)=\dfrac{1+ T s}{1+\alpha Ts},\;0<\alpha<1
+```
+
 存在一个超前相位最大的值 $\phi_{m}=\arcsin \dfrac{1-\alpha}{1+\alpha}$
 
-![超前校正](./file-20251118103841032.png)
+![](file-20251118103841032.png)
 
 #### 频域法
 
 超前校正装置有两个参数：$\alpha$和$T$
 
 给定期望的相位裕量$\gamma$，求取$\alpha$
+
 - 求原系统相位裕量$\gamma_{0}$
 - 求需要的校正装置的最大超前角$\phi_{m}=\gamma-\gamma_{0}+\epsilon$，其中
 	- $w_{c}$ 处为$-40dB$，$\epsilon$ 取$5\degree \to 10 \degree$
@@ -631,6 +836,7 @@ $$G(s)=\dfrac{1+ T s}{1+\alpha Ts},\\;\alpha>1$$
 - 求取$\alpha=\dfrac{1-\sin \phi_{m}}{1+ \sin \phi_{m}}$
 
 确定$T$
+
 - 求$\omega_{m}$，使得$20\lg G(j \omega_{m})=10\lg \alpha$，也即$G(j \omega_{m})=\sqrt{\alpha}$，使得校正后该点的开环增益为1
 - 则$\omega_{1}=\frac{1}{T}=\omega_{m} \sqrt{\alpha}$，$\omega_{2}=\dfrac{\omega_1}{\alpha}=\dfrac{\omega_{m}}{\sqrt{\alpha}}$
 
@@ -641,11 +847,13 @@ $$G(s)=\dfrac{1+ T s}{1+\alpha Ts},\\;\alpha>1$$
 滞后校正装置有：$\beta$ 和$T$
 
 给定期望的相位裕量 $\gamma$，求取 $\beta$
+
 - 求$\omega_{c'}$，使得其相位为$\phi=-180\degree+\gamma+\epsilon$，这就是校正后系统的剪切频率
 	- 其中，$\epsilon=5 \degree \sim 15 \degree$
 - 计算其幅值，令$20 \lg \beta=20\lg G|j \omega_{c'}|$，也即 $G(j \omega_{c'})=\beta$
 
 求取$T$
+
 - 取$\omega_{2}=\dfrac{\omega_{c'}}{5} \sim \dfrac{\omega_{c'}}{10}$，$\omega_{1}=\dfrac{\omega_{2}}{\beta}$
 
 得到$G_\beta(s)=\dfrac{1}{\beta}\dfrac{s+\omega_{2}}{s+\omega_{1}}$，大的在上面
@@ -673,19 +881,24 @@ $$G(s)=\dfrac{1+ T s}{1+\alpha Ts},\\;\alpha>1$$
 超前校正：计算零极点和增益K
 
 给定闭环极点$s_{d}$
+
 - 如果给定的极点在原系统根轨迹左侧，则可以使用超前校正
 - 计算装置超前角 $\phi=-180\degree-\angle G(s_{d})$
 
 
 求校正装置零极点
+
 - 零极点抵消法：零点为$s_{d}$的实部
 - 比值最大化法
 	- $\gamma=\dfrac{1}{2} \pi-\theta-\phi$
-	- 然后计算：$$
-\begin{align}
-z_c &= \frac{\omega_n \sin \gamma}{\sin(\pi - \theta - \gamma)} \\ \phi_c &= \frac{\omega_n \sin(\gamma + \phi)}{\sin(\pi - \theta - \gamma - \phi)}
-\end{align}
-$$
+	- 然后计算：
+
+      ```math
+      \begin{align}
+      z_c &= \frac{\omega_n \sin \gamma}{\sin(\pi - \theta - \gamma)} \\ \phi_c &= \frac{\omega_n \sin(\gamma + \phi)}{\sin(\pi - \theta - \gamma - \phi)}
+      \end{align}
+      ```
+
 - 幅值法
 	- $\cot \gamma=\dfrac{\frac{\mu}{k}-\cos \phi}{\sin \phi}$
 	- 其中$\frac{\mu}{k}$，为代入$s_{d}$后，原系统的增益的倒数
@@ -693,7 +906,7 @@ $$
 
 由幅值条件，求得校正装置的根轨迹增益
 
-![根轨迹法](./file-20251118144225875.png)
+![](file-20251118144225875.png)
 
 
 ---
@@ -704,7 +917,9 @@ $$
 
 频域法和根轨迹法都好抽象……正常人都是用极点配置法。串联一个特定的环节，如一阶惯性、超前环节，然后直接计算闭环极点求解出待定参数
 
-$$s+a,\\;\\;\frac{s+a}{s+b},\\;\\;\frac{1}{s+b}$$
+```math
+s+a,\;\;\frac{s+a}{s+b},\;\;\frac{1}{s+b}
+```
 
 ### 状态空间相关
 
@@ -715,43 +930,69 @@ $$s+a,\\;\\;\frac{s+a}{s+b},\\;\\;\frac{1}{s+b}$$
 ##### 能控性
 
 能控性矩阵
-$$Q_{c}=[B \ AB \ A^2B \ \cdots \ A^{n-1}B]$$
-PBH判据：$$\text{rank}[A-\lambda I \ B] = n, \quad \forall \lambda \in \mathbb{C}$$
+
+```math
+Q_{c}=[B \ AB \ A^2B \ \cdots \ A^{n-1}B]
+```
+
+PBH判据：
+
+```math
+\text{rank}[A-\lambda I \ B] = n, \quad \forall \lambda \in \mathbb{C}
+```
+
 对角线规范型判据：
+
 - $A$对角化后，如果没有重特征值，则$B$无全零行 $\iff$ 系统完全能控
 - 全0行对应的模态不能控
 
 ---
 
-输出能控性，不关心系统内部的所有状态是否都被控制，只关心这些状态和输入的组合能否影响到每一个输出分量：$$Q_{h}=[CB \ CAB \ CA^2B \ \cdots \ CA^{n-1}B \ D]=[C*Q_{c}, D]$$
-**判据要求这个“所有可能控制路径”的集合（矩阵）是行满秩的，其行数等于输出维数 p。**
+输出能控性，不关心系统内部的所有状态是否都被控制，只关心这些状态和输入的组合能否影响到每一个输出分量：
+
+```math
+Q_{h}=[CB \ CAB \ CA^2B \ \cdots \ CA^{n-1}B \ D]=[C*Q_{c}, D]
+```
+
+**判据要求这个“所有可能控制路径”的集合（矩阵）是行满秩的，其行数等于输出维数 p。**
 
 
 ##### 能观性
 
-能观性矩阵$$Q_{o}=\begin{bmatrix}
-    C \\
-    CA \\
-    CA^2 \\
-    \vdots \\
-    CA^{n-1}
-    \end{bmatrix}$$
-PBH判据$$\text{rank}\begin{bmatrix}
-    A-\lambda I \\
-    C
-    \end{bmatrix} = n, \quad \forall \lambda \in \mathbb{C}$$
+能观性矩阵
+
+```math
+Q_{o}=\begin{bmatrix}
+C \\
+CA \\
+CA^2 \\
+\vdots \\
+CA^{n-1}
+\end{bmatrix}
+```
+
+PBH判据
+
+```math
+\text{rank}\begin{bmatrix}
+A-\lambda I \\
+C
+\end{bmatrix} = n, \quad \forall \lambda \in \mathbb{C}
+```
     
 对角线规范型判据：
-- $A$对角化后，$C$无全零列
+
+- $A$对角化后，如果没有重特征值，则$C$无全零列 $\iff$ 系统完全能观
 
 
 ##### 单个变量的能观能控性
 
 化为约当标准型
-- 首先判断约当块是否能控能观
+
+- 不同约当块对应不同特征值时，首先判断约当块是否能控能观
 	- 约当块对应的$B$的最后一行不全为$0$，能控
 	- 约当块对应的$C$的第一列不全为$0$，能关
-- 如果块不能控能观，再看块内部各变量
+- 在无重特征值的对角型下，如果块不能控能观，再看块内部各变量
 	- 对$x_i$，$B$的第$i$行不全为$0$，能控；
 	- $C$的第$i$列不全为$0$，能观
 
@@ -760,6 +1001,7 @@ PBH判据$$\text{rank}\begin{bmatrix}
 
 
 根据卡尔曼分解定理，一个系统可以被分解成四个部分。
+
 - **传递函数仅仅描述了一个系统“既能控又能观”的那一部分子动力学**，也就是只看到$C(sI-A)^{-1}B$
 - **完全能控能观**等价条件：$G(s$)是**既约的**，即无零极点对消
 - **不对消的极点是传递函数的一部分，在任何实现中都必须既是能控的又是能观的**
@@ -768,14 +1010,15 @@ PBH判据$$\text{rank}\begin{bmatrix}
 
 
 因而不同的实现（传递函数的存在已经保证了至少能控或至少能观/可以化为标准型）
+
 - 如果系统完全能观能控，各标准型都完全能观能控
 - 否则
 	- 能控标准型：优先保证系统是完全能控的（哪怕是对消极点对应的模态），这导致了**状态变量是耦合的**，我们无法观测单个变量，**不能简单地说"x₁能观，x₂不能观**，可以观测的是能观维度的变量组合
 	- 能观标准型：优先保证系统的能观的，同上
 	- 对角标准型：每个状态变量（模态）对应一个极点
 		- 对角型的优势在于**各部分解耦**，容易观察
-		- 输入矩阵 $B$中是否有全零行。如果有，那么**该行对应的模态**（极点）是不能控的
-		- 输出矩阵 $C$中是否有全零列。如果有，那么该列对应的模态（极点）是不能观的
+		- 输入矩阵 $B$中是否有全零行。如果有，那么**该行对应的模态**（极点）是不能控的
+		- 输出矩阵 $C$中是否有全零列。如果有，那么该列对应的模态（极点）是不能观的
 - **最小实现**：传递函数的一个状态空间实现是最小实现$\iff$它既完全能控又完全能观。最小实现的维数等于传递函数的分母次数（假设传递函数是既约的)
 
 | 标准型   | 优势             | 劣势       | 适用场景       |
@@ -790,7 +1033,7 @@ PBH判据$$\text{rank}\begin{bmatrix}
 能控性，只看$(sI-A)^{-1}B$：在这里对消掉的极点，对应不能控模态
 能观性，只看$C(sI-A)^{-1}$：在这里对消掉的极点，对应不能观模态
 
-预解矩阵$(sI-A)^{-1}$中存在零极点对消：对消掉的**极点对应的模态**不能观也不能控
+预解矩阵$(sI-A)^{-1}$中存在零极点对消：不能据此判断能控能观
 
 
 | 物理意义               | 传递函数部分         | 对应的系统属性              | 对消的含义             |
@@ -813,12 +1056,15 @@ PBH判据$$\text{rank}\begin{bmatrix}
 #### 线性变换
 
 
-$$\underset{\text{原系统}}{(A, B, C, D)} \quad
+```math
+\underset{\text{原系统}}{(A, B, C, D)} \quad
 \overset{\mathbf{x} = T\mathbf{z}}{\xrightarrow{\hspace{2cm}}} \quad
-\underset{\text{新系统}}{(T^{-1}AT,\; T^{-1}B,\; CT,\; D)}$$
-![线性变换1](./48D7CA8D5E9EC66149909C2A8B196FAF.png)
+\underset{\text{新系统}}{(T^{-1}AT,\; T^{-1}B,\; CT,\; D)}
+```
 
-![线性变换2](./DE817552A9B571A9CABBEBC55BEE8D71.png)
+![](48D7CA8D5E9EC66149909C2A8B196FAF.png)
+
+![](DE817552A9B571A9CABBEBC55BEE8D71.png)
 
 ##### 化为对角
 
@@ -826,11 +1072,14 @@ $$\underset{\text{原系统}}{(A, B, C, D)} \quad
 构造变换矩阵$T=[T_1 \ T_2 \ \cdots \ T_n]$
 
 若$A$为友矩阵（Companion matrix）（能控标准型）
-    $$T = \begin{bmatrix}
-    1 & 1 & 1 \\
-    \lambda_1 & \lambda_2 & \lambda_3 \\
-    \lambda_1^2 & \lambda_2^2 & \lambda_3^2
-    \end{bmatrix}$$
+
+```math
+T = \begin{bmatrix}
+1 & 1 & 1 \\
+\lambda_1 & \lambda_2 & \lambda_3 \\
+\lambda_1^2 & \lambda_2^2 & \lambda_3^2
+\end{bmatrix}
+```
 
 如果是能控标准型情况下，变换矩阵 T的**逆的转置**（或转置的逆），不再具有简单的范德蒙结构。
 
@@ -838,7 +1087,8 @@ $$\underset{\text{原系统}}{(A, B, C, D)} \quad
 
 **性变换不改变系统的特征多项式**，这里的L直接使用原系统的特征多项式构造即可
 
-$$L=
+```math
+L=
 \begin{bmatrix}
 \alpha_1 & \alpha_2 & \cdots & \alpha_{n-1} & 1 \\
 \alpha_2 & \alpha_3 & \cdots & 1 & 0 \\
@@ -846,13 +1096,16 @@ $$L=
 \alpha_{n-1} & 1 & \cdots & 0 & 0 \\
 1 & 0 & \cdots & 0 & 0 \\
 \end{bmatrix}
-$$
-$$\begin{align}
+```
+
+```math
+\begin{align}
 T_{c}&=Q_{c}*L\\
 T_{o}^{-1}&=L*Q_{o}
-\end{align}$$
+\end{align}
+```
 
-![[7D3DD3D25C04213C0931E84EC751D361.png]]
+![](7D3DD3D25C04213C0931E84EC751D361.png)
 
 
 #### 特征分解
@@ -861,78 +1114,98 @@ T_{o}^{-1}&=L*Q_{o}
 
 
 **能控分解变换矩阵求解**：
-    1. 求出$r=\text{rank}[B \ AB \ \cdots \ A^{n-1}B]$
-    2. 取$T_1=[b_1 \ Ab_1 \ \cdots \ A^{r-1}b_1 \ \cdots]$（线性无关列）
-    3. 补$T_2$使$T=[T_1 \ T_2]$满秩
+
+1. 求出$r=\text{rank}[B \ AB \ \cdots \ A^{n-1}B]$
+2. 取$T_1=[b_1 \ Ab_1 \ \cdots \ A^{r-1}b_1 \ \cdots]$（线性无关列）
+3. 补$T_2$使$T=[T_1 \ T_2]$满秩
     
 *   **分解形式**：
- $$\begin{bmatrix}
-\dot{\bar{x}}_c \\
-\dot{\bar{x}}_{uc}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mathbf{A}_{c} & \mathbf{A}_{12} \\
-\mathbf{0} & \mathbf{A}_{uc}
-\end{bmatrix}
-\begin{bmatrix}
-\bar{x}_c \\
-\bar{x}_{uc}
-\end{bmatrix}+\begin{bmatrix}
-\mathbf{B}_c \\
-\mathbf{0}
-\end{bmatrix}
-u$$
 
-$$y = \bar{C}\bar{x} = \begin{bmatrix} \mathbf{C}_c & \mathbf{C}_{uc} \end{bmatrix} \begin{bmatrix} \bar{x}_c \\ \bar{x}_{uc} \end{bmatrix} $$
+    ```math
+    \begin{bmatrix}
+    \dot{\bar{x}}_c \\
+    \dot{\bar{x}}_{uc}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \mathbf{A}_{c} & \mathbf{A}_{12} \\
+    \mathbf{0} & \mathbf{A}_{uc}
+    \end{bmatrix}
+    \begin{bmatrix}
+    \bar{x}_c \\
+    \bar{x}_{uc}
+    \end{bmatrix}+\begin{bmatrix}
+    \mathbf{B}_c \\
+    \mathbf{0}
+    \end{bmatrix}
+    u
+    ```
+
+```math
+y = \bar{C}\bar{x} = \begin{bmatrix} \mathbf{C}_c & \mathbf{C}_{uc} \end{bmatrix} \begin{bmatrix} \bar{x}_c \\ \bar{x}_{uc} \end{bmatrix} 
+```
 
 **能观分解变换矩阵求解**：
-    1. 选取$r=\text{rank}Q_{o}$
-    2. 取$T_1$为$Q_o$中r个线性无关的行向量
-    3. 补$T_2$使$T=[T_1 ; T_2]$满秩，则此**为变换矩阵的逆矩阵**
+
+1. 选取$r=\text{rank}Q_{o}$
+2. 取$T_1$为$Q_o$中r个线性无关的行向量
+3. 补$T_2$使$T=[T_1 ; T_2]$满秩，则此**为变换矩阵的逆矩阵**
 
 - 分解形式：
- $$\begin{bmatrix}
-\dot{\tilde{x}}_o \\
-\dot{\tilde{x}}_{uo}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mathbf{A}_{o} & \mathbf{0} \\
-\mathbf{A}_{21} & \mathbf{A}_{uo}
-\end{bmatrix}
-\begin{bmatrix}
-\tilde{x}_o \\
-\tilde{x}_{uo}
-\end{bmatrix}+\begin{bmatrix}
-\mathbf{B}_o \\
-\mathbf{B}_{uo}
-\end{bmatrix}
-u$$
 
-$$y = \tilde{C} \tilde{x} = \begin{bmatrix} \mathbf{C}_o & \mathbf{0} \end{bmatrix} \begin{bmatrix} \tilde{x}_o \\ \tilde{x}_{uo} \end{bmatrix}$$
+  ```math
+  \begin{bmatrix}
+  \dot{\tilde{x}}_o \\
+  \dot{\tilde{x}}_{uo}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+  \mathbf{A}_{o} & \mathbf{0} \\
+  \mathbf{A}_{21} & \mathbf{A}_{uo}
+  \end{bmatrix}
+  \begin{bmatrix}
+  \tilde{x}_o \\
+  \tilde{x}_{uo}
+  \end{bmatrix}+\begin{bmatrix}
+  \mathbf{B}_o \\
+  \mathbf{B}_{uo}
+  \end{bmatrix}
+  u
+  ```
 
-$$x = T_o \tilde{x} = \begin{bmatrix} T_{o1} & T_{o2} \end{bmatrix} \begin{bmatrix} \tilde{x}_o \\ \tilde{x}_{uo} \end{bmatrix}$$
+```math
+y = \tilde{C} \tilde{x} = \begin{bmatrix} \mathbf{C}_o & \mathbf{0} \end{bmatrix} \begin{bmatrix} \tilde{x}_o \\ \tilde{x}_{uo} \end{bmatrix}
+```
+
+```math
+x = T_o \tilde{x} = \begin{bmatrix} T_{o1} & T_{o2} \end{bmatrix} \begin{bmatrix} \tilde{x}_o \\ \tilde{x}_{uo} \end{bmatrix}
+```
 
 
 #### 状态反馈与输出反馈
 
 反馈都是反馈到输入$u$，状态反馈即将状态值反馈到输入
-$$
+
+```math
 \begin{align*}
 u(t) &= r(t) - Kx(t) \\
 \dot{x}\,(t) &= (A - BK)x(t) + Br(t) \\
 y(t) &= (C - DK)x(t) + Dr(t)
 \end{align*}
-$$
+```
+
 $K$ 为一行向量
 
-输出反馈则为$u=v-Hy=v-HCx$，相当于经典控制里的反馈，不能自由配置极点，只能用直接法
-$$\begin{align*}
+输出反馈则为$u=v-Hy=(I+HD)^{-1}(v-HCx),\quad\det(I+HD)\ne0$，相当于经典控制里的反馈，不能自由配置极点，只能用直接法
+
+```math
+\begin{align*}
 u(t) &= r(t) - Hy(t) \\
-\dot{x}\,(t) &= (A - BHC)x(t) + Br(t) \\
+\dot{x}\,(t) &= [A-B(I+HD)^{-1}HC]x(t)+B(I+HD)^{-1}r(t) \\
 y(t) &= Cx(t) + Du(t)
-\end{align*}$$
+\end{align*}
+```
+
 ##### 直接法
 
 目标特征多项式：$\Delta^{*}(s)$
@@ -950,12 +1223,20 @@ y(t) &= Cx(t) + Du(t)
 #### 全维观测器
 
 将**观测器的输出与实际输出作差，反馈到微分**
-$$\begin{align}
+
+```math
+\begin{align}
 \dot{\hat{x}}(t) &= A\hat{x}(t) + Bu(t) + H[y(t) - \hat{y}(t)] \\
 \hat{y}(t) &= C\hat{x}(t) + Du(t)
-\end{align}$$
+\end{align}
+```
+
 则
-$$\dot{\hat{x}}(t) = (A - HC)\hat{x}(t) + (B - HD)u(t) + Hy(t)$$
+
+```math
+\dot{\hat{x}}(t) = (A - HC)\hat{x}(t) + (B - HD)u(t) + Hy(t)
+```
+
 $H$为一列向量，
 不需要记忆这个式子，记住第一个，也即$\dot{\hat{x}}(t) = A\hat{x}(t) + Bu(t) + Hy(t) - H\hat{y}(t)$
 
@@ -980,57 +1261,92 @@ $H$为一列向量，
 
 
 分解系统：
+
 1. 计算$r=\text{rank}C$，则观测器维数为$n-r$
 2. 取$C$中r个线性无关的行向量$C_{r}$
 3. 补$R$使$Q^{-1}=[C_r ; R]$满秩，则此**为变换矩阵的逆矩阵**
 4. 做变换$x=Qz$，记前$r$个可直接观测的状态为$y$
-$$\begin{bmatrix}
-\dot{y} \\
-\dot{z_{2}}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\mathbf{A}_{11} & \mathbf{A}_{12} \\
-\mathbf{A}_{21} & \mathbf{A}_{22}
-\end{bmatrix}
-\begin{bmatrix}
-y\\
-z_{2}
-\end{bmatrix}+\begin{bmatrix}
-\mathbf{B}_1 \\
-\mathbf{B}_2
-\end{bmatrix}
-u$$
 
-5. 展开为关于状态$z_2$的$n-r$阶降阶系统$$\begin{align}
-\dot{z}_{2} &=A_{22}z_{2}+(B_{2}u+A_{21}y)\\
-\dot{y}-A_{11}y -B_{1}u &=A_{12}z_{2}
-\end{align}$$
-6. 也即$$\begin{align}
-\dot{z}_{2} &=A_{22}z_{2}+v\\
-w &=A_{12}z_{2}
-\end{align}$$
+   ```math
+   \begin{bmatrix}
+   \dot{y} \\
+   \dot{z_{2}}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+   \mathbf{A}_{11} & \mathbf{A}_{12} \\
+   \mathbf{A}_{21} & \mathbf{A}_{22}
+   \end{bmatrix}
+   \begin{bmatrix}
+   y\\
+   z_{2}
+   \end{bmatrix}+\begin{bmatrix}
+   \mathbf{B}_1 \\
+   \mathbf{B}_2
+   \end{bmatrix}
+   u
+   ```
+
+5. 展开为关于状态$z_2$的$n-r$阶降阶系统
+
+   ```math
+   \begin{align}
+   \dot{z}_{2} &=A_{22}z_{2}+(B_{2}u+A_{21}y)\\
+   \dot{y}-A_{11}y -B_{1}u &=A_{12}z_{2}
+   \end{align}
+   ```
+
+6. 也即
+
+   ```math
+   \begin{align}
+   \dot{z}_{2} &=A_{22}z_{2}+v\\
+   w &=A_{12}z_{2}
+   \end{align}
+   ```
 
 
 对子系统$\dot{z}_{2}=A_{22}z_{2}+(B_{2}u+A_{21}y)$设计全维观测器
-- 观测器矩阵$H$$$\begin{align}
-\dot{z}_{2} &=(A_{22}-HA_{12})z_{2}+v+Hw\\
-w &=A_{12}z_{2}
-\end{align}$$
+
+- 观测器矩阵$H$
+
+  ```math
+  \begin{align}
+  \dot{\hat{z}}_{2} &=(A_{22}-HA_{12})\hat{z}_{2}+v+Hw\\
+  w &=\dot{y}-A_{11}y-B_1u
+  \end{align}
+  ```
+
 - 根据要求的极点，计算$H$的值即可完成观测器设计
 
 
 
 写出观测器完整形式
-- 为了消除$\dot{y}$，引入变量替换（容易推导，展开$w$，其中有一项$H\dot{y}$）$$r=z-Hy$$
-- 得到$$\begin{align}
-\dot{r} &=(A_{22}-HA_{12})(r+Hy)+v+Hw\\
-w &=A_{12}(r+Hy)
-\end{align}$$
-- 观测器$$x=Qz=Q\begin{bmatrix}
-y \\
-r+Hy
-\end{bmatrix}$$
+
+- 为了消除$\dot{y}$，引入变量替换（容易推导，展开$w$，其中有一项$H\dot{y}$）
+
+  ```math
+  r=\hat{z}_{2}-Hy
+  ```
+
+- 得到
+
+  ```math
+  \begin{align}
+  \dot{r} &=(A_{22}-HA_{12})r+[(A_{22}-HA_{12})H+A_{21}-HA_{11}]y+(B_2-HB_1)u\\
+  w &=\dot{y}-A_{11}y-B_1u
+  \end{align}
+  ```
+
+- 观测器
+
+  ```math
+  \hat{x}=Q\hat{z}=Q\begin{bmatrix}
+  y \\
+  r+Hy
+  \end{bmatrix}
+  ```
+
 其中$r$根据微分方程可以快速计算
 
 
@@ -1041,14 +1357,17 @@ r+Hy
 充要条件：不能控部分渐进稳定（负实部极点）
 
 判别
+
 - 做能控子空间分解，并求**不能控系统**的极点（这一步几乎是必须的，因为我们无法直接从系统的特征值得出那部分对应能控，哪部分不能控）
 - 不能控系统包括：能观不能控部分、既不能控又不能观部分，在能控子空间分解里，这部分没有解耦出来
 
 设计方法一
+
 - 对能控部分设计状态反馈阵
 - 逆变换，得到原系统的状态反馈阵
 
 设计方法二
+
 - 直接对原系统设计反馈阵，在设计过程中，自然会发现不能控部分极点不变（因式不受反馈阵影响）
 - 这样求得的关于K的方程有无穷多解，取一个即可
 
@@ -1057,12 +1376,14 @@ r+Hy
 ##### 输出反馈镇定
 
 充要条件：
+
 - 能控不能观部分、能观不能控部分、既不能控又不能观部分，渐进稳定；
 - 能控且能观部分，输出反馈能配置出负实部极点
 
 **输出 y不能反映不能观子系统**，只能控制能控能观部分，所以我们需要更精细的分解
 
 判别
+
 - 做**卡尔曼分解**，求三个部分的极点
 - 对能控能观部分设计输出反馈，看是否存在可行的控制器
 - 做逆变换
@@ -1074,7 +1395,8 @@ r+Hy
 #### 解耦控制概述
 
 对MIMO系统，其具备传递函数矩阵 
-$$
+
+```math
 \begin{bmatrix}
 y_1(s) \\
 y_2(s) \\
@@ -1094,10 +1416,12 @@ u_2(s) \\
 \vdots \\
 u_p(s)
 \end{bmatrix}
-$$
+```
+
 解耦控制即：寻找合适的$u$，使得传递函数矩阵变成对角阵，实现一个输入对应一个输出
 
 必要条件：
+
 - $p=q$，输入向量与输出向量维度一致
 - 解耦后对角线上无零元素
 
@@ -1106,18 +1430,22 @@ $$
 
 这是经典控制的方法，单位负反馈，串联一个补偿器$G_{c}(s)$，
 
-![[file-20251117113655239.png]]
+![](file-20251117113655239.png)
 
 **给定**对角形式的闭环传递函数：
-$$
+
+```math
 \Phi(s) = [I + G_0(s) G_c(s)]^{-1} G_0(s) G_c(s)
-$$
+```
+
 由于$\Phi(s)$是对角阵，故$G_{0}G_{c}$是一个对角阵
 
 解得：
-$$
+
+```math
 G_c(s) = G_0^{-1}(s) \Phi(s) [I - \Phi(s)]^{-1}
-$$
+```
+
 很多时候，是**给定开环对角阵$G_{0}G_{c}$**。
 
 > 传递函数矩阵的乘法：数学上，函数复合$f(g(x))$就是**先g后f，写作$f o g$**，先作用的函数写在右边，**后作用的函数写在左边**
@@ -1128,19 +1456,26 @@ $$
 ##### 状态反馈动态解耦（时域）
 
 状态反馈+输入变换阵$L$：
-$$\begin{align}
+
+```math
+\begin{align}
 \mu&=-Kx+Lv\\
 \dot{x}&=(A-BK)x+BLv\\
 y&=Cx
-\end{align}$$
+\end{align}
+```
+
 寻找合适的$(K,L)$，使得 
-$$
+
+```math
 G_{KL}(s) = C(sI - A + BK)^{-1}BL = \begin{bmatrix} g_{11}'(s) & \cdots \\ \vdots & g_{pp}'(s) \end{bmatrix}
-$$
+```
+
 限制条件
+
 - $r(B)=r(C)=p$，控制向量和输出向量的分量都线性无关
 - $L$可逆
-- **充要**：如果按照积分逆系统方法计算的 $F和E$ 是非奇异的，则系统可以通过状态反馈+输入变换解耦
+- **充要**：如果按照积分逆系统方法计算的 $E$ 是非奇异的，则系统可以通过状态反馈+输入变换解耦
 
 #### 积分逆系统解耦
 
@@ -1150,17 +1485,18 @@ $$
 
 给定被控对象$G(s)$，最简单地，即令补偿器$G_{c}(s)=G^{-1}(s)$，直接化补偿后的传递函数为单位阵，但这通常物理上不可实现（不是逆矩阵不存在）
 
-![[file-20251117121958189.png]]
+![](file-20251117121958189.png)
 
 积分逆系统解耦，即是让补偿后的传递函数 $GG_{c}$为积分系统 
-$$
+
+```math
 G(s)G_a(s) = \begin{bmatrix}
 \dfrac{1}{s^{\alpha_1}} & & \\
 & \dfrac{1}{s^{\alpha_2}} & \\
 & & \ddots \\
 & & & \dfrac{1}{s^{\alpha_p}}
 \end{bmatrix}
-$$
+```
 
 此时，补偿器$G_\alpha(s)$称为原系统的$\alpha$阶积分逆系统，输入满足$v_{i}=y_{i}^{\alpha_{i}}$，第$i$ 个分量$y_i$对应的$\alpha_{i}$ 
 
@@ -1170,19 +1506,34 @@ $$
 
 在状态反馈解耦中，我们通过**状态反馈和输入变换**直接得到积分器系统；实际上，状态反馈解耦可以看作是在原系统上串联一个积分逆系统（通过状态反馈实现）。
 
-取恰当的$\alpha$，**使得$y$的$\alpha$阶导数向量显含 $\mu$** $$y^{\alpha}=Fx+Eu$$
-再引入反馈$K=E^{-1}F,L=E^{-1}$得$$y^{\alpha}=Fx+E(−E^{−1}Fx+E^{−1}v)=Fx−Fx+v=v$$
+取恰当的$\alpha$，**使得$y$的$\alpha$阶导数向量显含 $\mu$**
+
+```math
+y^{\alpha}=Fx+Eu
+```
+
+再引入反馈$K=E^{-1}F,L=E^{-1}$得
+
+```math
+y^{\alpha}=Fx+E(−E^{−1}Fx+E^{−1}v)=Fx−Fx+v=v
+```
+
 具体步骤如下：
 
 ##### 计算解耦常数
+
 ###### 给定状态空间表达式时
 
-$$αᵢ = \min \{k \mid c_{i}A^{(k-1)}B ≠ 0\}$$
+```math
+αᵢ = \min \{k \mid c_{i}A^{(k-1)}B ≠ 0\}
+```
 
 第$i$ 个分量$y_i$对应的$\alpha_{i}$ ，是满足$c_{i}A^{k-1}B \neq 0$的最小$k$ 值，此时对$y_{i}$求$\alpha_{i}$ 阶导数，其为状态$x$与输入$\mu$的混合式子 
-$$
+
+```math
 y_i^{\alpha_i} = c_i A^{\alpha_i} x + c_i A^{\alpha_i - 1} B u
-$$
+```
+
 **$y_i$ 的 $k$ 阶导中含有 $\mu$，那么$\alpha_{i}$ 就是 $k$**，
 
 > **行向量**不是零向量的最小阶次
@@ -1190,12 +1541,14 @@ $$
 ###### 给定闭环传递函数时
 
 传递函数矩阵有$p$个行向量，其中第$i$个可以表示为：
-$$
+
+```math
 \begin{align}
 g_i(s) = c_i (sI - A)^{-1}B &= \frac{1}{s}c_i B + \frac{1}{s^2}c_i AB + \frac{1}{s^3}c_i A^2B + \cdots\\
 &= \frac{1}{s^{\alpha_i}}c_i A^{\alpha_i - 1}B + \frac{1}{s^{\alpha_i + 1}}c_i A^{\alpha_i}B + \cdots
 \end{align}
-$$
+```
+
 从而，$g_{i}(s)$ 的最小积分环节数目，即为$\alpha_{i}$
 
 > 传递函数的幂级数展开系数就是马尔可夫参数
@@ -1203,9 +1556,17 @@ $$
 ##### 构造可解耦性矩阵
 
 根据计算的$\alpha_{i}$，得到 
-$$\mathbf{y}^{(\alpha)} = \begin{bmatrix} y_1^{(\alpha_1)} \\ \vdots \\ y_p^{(\alpha_p)} \end{bmatrix} = \begin{bmatrix} c_1 A^{(\alpha_1)} \\ \vdots \\ c_p A^{\alpha_p} \end{bmatrix} x + \begin{bmatrix} c_1 A^{\alpha_1 - 1} B \\ \vdots \\ c_p A^{\alpha_p - 1} B \end{bmatrix} u = Fx + Eu$$
 
-如果$E$矩阵非奇异，则计算 $$K=E^{-1}F, \; L=E^{-1}$$
+```math
+\mathbf{y}^{(\alpha)} = \begin{bmatrix} y_1^{(\alpha_1)} \\ \vdots \\ y_p^{(\alpha_p)} \end{bmatrix} = \begin{bmatrix} c_1 A^{(\alpha_1)} \\ \vdots \\ c_p A^{\alpha_p} \end{bmatrix} x + \begin{bmatrix} c_1 A^{\alpha_1 - 1} B \\ \vdots \\ c_p A^{\alpha_p - 1} B \end{bmatrix} u = Fx + Eu
+```
+
+如果$E$矩阵非奇异，则计算
+
+```math
+K=E^{-1}F, \; L=E^{-1}
+```
+
 从而实现解耦（要维度匹配必定是E在前F在后）
 
 ##### 可配置极点的解耦
@@ -1227,15 +1588,22 @@ $$\mathbf{y}^{(\alpha)} = \begin{bmatrix} y_1^{(\alpha_1)} \\ \vdots \\ y_p^{(\a
 仍然令 $u=-Kx+Lv$，
 
 - 必要性：
-	- 检验是否有$$r \begin{bmatrix}
-A&B\\C& O
-\end{bmatrix}=n+p$$
+	- 检验是否有
+
+      ```math
+      r \begin{bmatrix}
+      A&B\\C& O
+      \end{bmatrix}=n+p
+      ```
+
 	- 系统是否状态反馈可镇定
 - 给定期望的稳态输入输出关系对角阵$D_{0}$
 - 任求取$K$使得系统镇定，满足稳态条件
-- 由$D_{0}=C(sI-(A-BK))^{-1}BL$，代入$s=0$，解得 $$
-L = -\left[ C(A - BK)^{-1}B \right]^{-1}D_0
-$$
+- 由$D_{0}=C(sI-(A-BK))^{-1}BL$，代入$s=0$，解得
+
+  ```math
+  L = -\left[ C(A - BK)^{-1}B \right]^{-1}D_0
+  ```
 
 ### 李雅普诺夫稳定性
 
@@ -1243,7 +1611,7 @@ $$
 - **内部稳定性**：状态空间描述，要求所有状态变量有界
 - **李雅普诺夫理论讨论的是内部稳定性**
 
-对于最小实现系统，两者等价；但非最小实现系统可能BIBO稳定而内部不稳定
+对于最小实现系统，内部稳定取零输入渐近稳定时，两者等价；但非最小实现系统可能BIBO稳定而内部不稳定
 
 #### 平衡状态与平衡点的稳定性
 
@@ -1254,6 +1622,7 @@ $$
 平衡点的稳定性是描述，受到微扰（无输入）之后，能否回到平衡点
 
 三种稳定性
+
 - 李雅普诺夫稳定：
 	- 幅值收敛的震荡（不远离，但不收敛回平衡点）
 - 渐进稳定
@@ -1267,12 +1636,16 @@ $$
 
 间接法，判别系统矩阵$A$是否具有负实部特征值，也就是经典方法。非线性系统可以具备线性化，用雅可比矩阵
 
-$$A \sim \begin{bmatrix}
+```math
+A \sim \begin{bmatrix}
 \nabla f_{1}\\ \nabla f_{2}\\  \nabla f_{3}\\ 
-\end{bmatrix}$$
-对非线性系统的线性化，判据如下
+\end{bmatrix}
+```
+
+对平衡点附近连续可微的非线性系统，其线性化判据如下
+
 - 线性化系统渐进稳定 $\implies$ 原系统稳定
-- 线性化系统不稳定 $\implies$ 原系统不稳定
+- 线性化系统有正实部特征值而不稳定 $\implies$ 原系统不稳定
 - 线性化系统李雅普诺夫意义稳定（纯虚数特征值，经典里的临界稳定），方法失效
 
 
@@ -1287,23 +1660,28 @@ $$A \sim \begin{bmatrix}
 ##### 全局判定
 
 渐进稳定基本定理
+
 - $V(x,t)$正定
 - $\dot{V}(x,t)$负定
 
 渐进稳定第二定理
+
 - $V(x,t)$正定
 - $\dot{V}(x,t)$半负定，且$x \neq 0$时，$\dot{V}(x,t) \not\equiv 0$
 
 大范围渐进稳定(**能量发散**)
+
 - $V(x,t)$正定
 - $\dot{V}(x,t)$负定 或 $\dot{V}(x,t)$半负定，且$x \neq 0$时，$\dot{V}(x,t) \not\equiv 0$
 - $\lim_{|x| \rightarrow \infty}V(x,t)=\infty$ （保证可以扩展到整个状态空间）
 
 李雅普诺夫稳定
+
 - $V(x,t)$正定
 - $\dot{V}(x,t)$半负定
 
 不稳定判定
+
 - $V(x,t)$正定
 - $\dot{V}(x,t)$正定 或 $\dot{V}(x,t)$半正定，且$x \neq 0$时，$\dot{V}(x,t) \not\equiv 0$
 
@@ -1317,10 +1695,20 @@ $$A \sim \begin{bmatrix}
 
 ##### 线性定常系统
 
-渐进稳定的**充要条件**：$$ \exists P，P对称且正定，使得A^{T}P^{T}+PA=-E$$ $$离散情况：G^TPG-P=-E$$
+渐进稳定的**充要条件**：
+
+```math
+\exists P，P对称且正定，使得A^{T}P^{T}+PA=-E
+```
+
+```math
+离散情况：G^TPG-P=-E
+```
+
 这个也叫李雅普诺夫方程
 
 推导：
+
 - 取$V=X^{T}PX$，求导为$\dot{X}^{T}PX+X^{T}P \dot{X} = X^{T}A^{T}PX +X^{T}PAX$，
 - 离散情况取$V(k)=X^{T}(k)PX(k)$，做差分$V(k+1)-V(k)=X^{T}(k+1)PX(k+1)- X^{T}(k)PX(k)=X^{T}(k)G^TPGX(k)-X^{T}(k)PX(k)$
 
