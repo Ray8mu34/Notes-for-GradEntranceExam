@@ -6,7 +6,7 @@ lastmod: 2026-10-26
 
 ### 控制系统结构
 
-![](file-20251108164032941.png)
+![控制系统结构](redrawn-控制系统结构.svg)
 
 参考输人元件、比较元件、控制元件、执行元件、被控对象、反馈元件 六个基本单元组成
 
@@ -110,7 +110,28 @@ $\Delta_k$: 第$k$条前向通路的余因子，即从$\Delta$中**去除所有�
 
 推导：
 
-![](8FFFE27DF7D0B68450D300704EB74F35.png)
+设 $F(s)=\mathcal L\{f(t)\}$，单边拉普拉斯变换为
+
+```math
+F(s)=\int_0^{\infty}e^{-st}f(t)\,dt.
+```
+分部积分给出
+
+```math
+\mathcal L\{f^{(n)}(t)\}
+=s\mathcal L\{f^{(n-1)}(t)\}-f^{(n-1)}(0^+)
+=s^nF(s)-\sum_{k=1}^{n}s^{n-k}f^{(k-1)}(0^+).
+```
+对 $a\geq0$，时间平移与复频域平移分别满足
+
+```math
+\begin{aligned}
+\mathcal L\{f(t-a)u(t-a)\}&=e^{-as}F(s),\\
+\mathcal L\{f(t+a)\}&=e^{as}\left[F(s)-\int_0^a e^{-st}f(t)\,dt\right],\\
+\mathcal L\{e^{at}f(t)\}&=F(s-a).
+\end{aligned}
+```
+时间提前时须保留被移出积分区间的部分；不能一般地写成 $e^{as}F(s)$。
 
 终值：$F(s)$的所有极点都必须位于 s 平面的左半平面（LHP）或在原点处**至多有一个一阶极点**。
 
@@ -166,9 +187,57 @@ G(s) = C(sI-A)^{-1}B + D
 
 ##### 传递函数化状态空间
 
-![](8A29379532B2A10F08559FD7ECA5D12A.png)
+以
 
-![](FFE4A805B7382B83156CE3F005DBFA9B.png)
+```math
+y^{(3)}+7y''+12y'=u''+3u'+2u
+```
+为例，零初始条件下
+
+```math
+G(s)=\frac{s^2+3s+2}{s^3+7s^2+12s}
+=(s^2+3s+2)\frac{1}{s^3+7s^2+12s}.
+```
+**能控标准型**：先令中间变量满足 $U(s)=(s^3+7s^2+12s)X_1(s)$，再用分子构造输出。
+
+```math
+\dot{\boldsymbol x}=
+\begin{bmatrix}0&1&0\\0&0&1\\0&-12&-7\end{bmatrix}\boldsymbol x
++\begin{bmatrix}0\\0\\1\end{bmatrix}u,
+\qquad y=\begin{bmatrix}2&3&1\end{bmatrix}\boldsymbol x.
+```
+**能观标准型**：由对偶关系可得
+
+```math
+\dot{\boldsymbol x}=
+\begin{bmatrix}0&0&0\\1&0&-12\\0&1&-7\end{bmatrix}\boldsymbol x
++\begin{bmatrix}2\\3\\1\end{bmatrix}u,
+\qquad y=\begin{bmatrix}0&0&1\end{bmatrix}\boldsymbol x.
+```
+
+**互异实极点的并联实现**：若
+
+```math
+G(s)=\sum_{i=1}^n\frac{c_i}{s-\lambda_i},
+```
+可取 $X_i(s)=U(s)/(s-\lambda_i)$，从而
+
+```math
+\dot x_i=\lambda_i x_i+u,\qquad y=\sum_{i=1}^n c_i x_i.
+```
+例如
+
+```math
+G(s)=\frac{1/6}{s}-\frac{2/3}{s+3}+\frac{3/2}{s+4}
+```
+可实现为
+
+```math
+\dot{\boldsymbol x}=
+\begin{bmatrix}0&0&0\\0&-3&0\\0&0&-4\end{bmatrix}\boldsymbol x
++\begin{bmatrix}1\\1\\1\end{bmatrix}u,
+\qquad y=\begin{bmatrix}\frac16&-\frac23&\frac32\end{bmatrix}\boldsymbol x.
+```
 
 
 ### 连续系统时域
@@ -177,7 +246,13 @@ G(s) = C(sI-A)^{-1}B + D
 
 必要性：当其传递函数特征方程（分母等于零的方程）的**最高次项系数化为正数**后，**所有系数都必须为正**
 
-![](file-20251020191630131.png)
+设 $a_n>0$，劳斯表前两行为
+
+```math
+\begin{array}{c|ccc}s^n&a_n&a_{n-2}&\cdots\\s^{n-1}&a_{n-1}&a_{n-3}&\cdots\end{array}
+```
+
+后续各行由相邻两行递推。例如 $s^{n-2}$ 行的首项为 $b_1=(a_{n-1}a_{n-2}-a_na_{n-3})/a_{n-1}$；其余项按同样规则计算。
 
 - 遇到第一列是0
 	- 改写方程为$s=1/t$，重新计算
@@ -234,7 +309,19 @@ g(t) = 1-\frac{1}{\sqrt{1-\zeta^2}}e^{-\zeta\omega_nt}\sin(\omega_d t+\arccos \z
 
 记住：$\beta=\arccos \zeta = \arctan \dfrac{\sqrt{1-\zeta^{2}}}{\zeta}$
 
-![](256275EABBB3AEC86689DD1AF386635F.png)
+标准欠阻尼二阶系统（$0<\zeta<1$），令 $\beta=\arccos\zeta$：
+
+```math
+\begin{aligned}
+\omega_d&=\omega_n\sqrt{1-\zeta^2},&
+t_p&=\frac{\pi}{\omega_d},\\
+M_p&=\exp\left(-\frac{\zeta\pi}{\sqrt{1-\zeta^2}}\right),&
+t_r&=\frac{\pi-\beta}{\omega_d},\\
+t_s(2\%)&\approx\frac{4}{\zeta\omega_n},&
+t_s(5\%)&\approx\frac{3}{\zeta\omega_n}.
+\end{aligned}
+```
+这里 $t_r$ 指首次由零上升到稳态值的时间；百分比超调量为 $100M_p\%$。
 
 
 #### 闭环稳定时单位典型输入的稳态误差
@@ -336,7 +423,33 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 
 4. **虚轴交点**：令$s=j\omega$代入特征方程，解实部、虚部方程
 
-![](D73AEF4DB67E0922859F46CE08C81723.png)
+设开环传递函数为
+
+```math
+K\frac{\prod_i(s-z_i)}{\prod_j(s-p_j)},\qquad K>0.
+```
+特征方程给出角度条件
+
+```math
+\sum_i\arg(s-z_i)-\sum_j\arg(s-p_j)=(2k+1)\pi.
+```
+其中 $s-p_j$ 的方向是从极点 $p_j$ 指向 $s$。实轴上一点右侧的实零点与实极点个数之和为奇数时，该点属于正增益根轨迹。
+
+![F007](redrawn-F007.svg)
+
+对简单极点 $p_m$，出射角为
+
+```math
+\theta_{\mathrm d}=(2k+1)\pi+\sum_i\arg(p_m-z_i)
+-\sum_{j\ne m}\arg(p_m-p_j).
+```
+对简单零点 $z_n$，入射角（以 $s-z_n$ 的方向定义）为
+
+```math
+\theta_{\mathrm a}=-(2k+1)\pi-\sum_{i\ne n}\arg(z_n-z_i)
++\sum_j\arg(z_n-p_j).
+```
+角度均按 $2\pi$ 等价取值；多重零、极点须相应考虑其重数。
 
 ##### 其他
 
@@ -368,7 +481,20 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 
 ##### 根轨迹的几何意义
 
-![](1B96010871EF131D0C7CEDDE42EF573B.png)
+对标准二阶共轭极点
+
+```math
+s=-\zeta\omega_n\pm j\omega_d,\qquad
+\omega_d=\omega_n\sqrt{1-\zeta^2},
+```
+有 $|s|=\omega_n$。从负实轴量起的夹角为 $\theta$ 时，$\zeta=\cos\theta$。
+
+![F008](redrawn-F008.svg)
+
+- 等自然频率 $\omega_n$：以原点为圆心的圆。
+- 等阻尼比 $\zeta$：从原点出发的射线（图示左半平面）。
+- 等衰减率 $\zeta\omega_n$：直线 $\operatorname{Re}s=-\zeta\omega_n$。
+- 等阻尼振荡频率 $\omega_d$：直线 $\operatorname{Im}s=\pm\omega_d$。
 
 ##### 根轨迹与阻尼比
 
@@ -387,7 +513,19 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 
 ##### 根轨迹与幅值裕度
 
-![](BD65179963C1E24C9E467D389DA1D8AA.png)
+当开环零、极点保持不变，仅改变正增益 $K$ 时，根轨迹的虚轴交点满足
+
+```math
+K_{\mathrm{cr}}\frac{\prod_i(j\omega_g-z_i)}{\prod_j(j\omega_g-p_j)}=-1.
+```
+![F010](redrawn-F010.svg)
+
+虚轴交点的频率由角度条件确定。对当前增益 $K_0$，若 $K_{\mathrm{cr}}$ 是增益增大时首次失稳的临界增益，则幅值裕度为
+
+```math
+K_g=\frac{K_{\mathrm{cr}}}{K_0},\qquad
+K_g\,\left|K_0\frac{\prod_i(j\omega_g-z_i)}{\prod_j(j\omega_g-p_j)}\right|=1.
+```
 
 根轨迹与虚轴的交点，即为$G(jw)=-1$的点，因而其其实反应了没有K的系统的幅值裕度，不难得到$G^{'}(jw)= \dfrac{G(jw)}{K}=-\dfrac{1}{K}$
 
@@ -398,7 +536,19 @@ $s-p_{j}$是从$p_{j}$指向$s$的向量！
 
 采样角频率：$\omega_{s}=\dfrac{2 \pi}{T_{s}}>2\omega_{max}$，即对带限信号，采样频率大于信号最高频率的两倍，才能无失真地提取信号。奈奎斯特采样率特指那个**临界值**$2\omega_{max}$，奈奎斯特频率为$\omega_s/2$
 
-![](3EAD75F6351BEEAF9F9D85B42BDB95F3.png)
+理想采样信号与其拉普拉斯变换为
+
+```math
+f^*(t)=\sum_{k=0}^{\infty}f(kT)\delta(t-kT),\qquad
+F^*(s)=\sum_{k=0}^{\infty}f(kT)e^{-kTs}.
+```
+令 $z=e^{Ts}$，则
+
+```math
+F(z)=\sum_{k=0}^{\infty}f(kT)z^{-k},\qquad
+F^*(s)=F(z)\big|_{z=e^{Ts}}.
+```
+这里的 $F(z)$ 是采样序列的 $z$ 变换；不能不经采样就把原连续信号的 $F(s)$ 直接代换成 $F(z)$。
 
 ```math
 F(z)=F^{*}(\dfrac{\ln z}{T}),\;\;\;z=e^{Ts}
@@ -435,7 +585,17 @@ F(z)=F^{*}(\dfrac{\ln z}{T}),\;\;\;z=e^{Ts}
 
 核心记住$a^n$，$u(n)$，然后推导Z变换的微分性质：时域乘$n$，等于$z$域微分再乘$-z$
 
-![](E4DA073958F0BC386529E554EB10A3F9.png)
+由 $X(z)=\sum_{n=0}^{\infty}x[n]z^{-n}$ 对 $z$ 求导，在收敛域内部得
+
+```math
+\frac{dX(z)}{dz}=\sum_{n=0}^{\infty}(-n)x[n]z^{-n-1},\qquad
+\mathcal Z\{nx[n]\}=-z\frac{dX(z)}{dz}.
+```
+高次幂可反复作用同一算子：
+
+```math
+\mathcal Z\{n^k x[n]\}=\left(-z\frac{d}{dz}\right)^kX(z).
+```
 
 初值定理：$f(0) = \lim_{z\to\infty}F(z)$，$f(1)=\lim_{z \rightarrow \infty} z[F(z)−f(0)]$
 终值定理：$f(\infty)=\lim_{z \rightarrow 1} (z-1)F(z)$，要求$F$ 除了在 z=1可以有一个单极点外，其它极点必须在单位圆内，也即$(z-1)F$ 的极点都在单位圆内
@@ -590,7 +750,23 @@ w_{r}=w_{n}\sqrt{1-2 \zeta^2}
 M_{r}=\frac{1}{2\zeta \sqrt{1-\zeta^{2}}}
 ```
 
-![](8892F66F605C35ED990D2D2F26AC3B44.png)
+标准二阶振荡环节的频率响应满足
+
+```math
+G(s)=\frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2},\qquad
+|G(j\omega)|=\frac{\omega_n^2}{\sqrt{(\omega_n^2-\omega^2)^2+4\zeta^2\omega_n^2\omega^2}}.
+```
+令 $q=\omega^2$，分母根号内为
+
+```math
+q^2+(4\zeta^2-2)\omega_n^2q+\omega_n^4.
+```
+其最小值点给出共振频率与共振峰值（$0<\zeta<1/\sqrt2$）：
+
+```math
+\omega_r=\omega_n\sqrt{1-2\zeta^2},\qquad
+M_r=\frac{1}{2\zeta\sqrt{1-\zeta^2}}.
+```
 
 频带宽度（根本记不住……）
 
@@ -647,7 +823,20 @@ K_g = \frac{1}{|G(j\omega_g)|}
 
 剪切频率不仅影响系统的相位裕量，还影响动态过程的调整时间
 
-![](0F9AF551578C1B4A812FA3EBF06E47D7.png)
+对开环频率响应 $L(j\omega)$，增益穿越频率与相位穿越频率分别满足
+
+```math
+|L(j\omega_c)|=1,\qquad \arg L(j\omega_g)=-\pi.
+```
+![F014](redrawn-F014.svg)
+
+在相应穿越点，幅值裕度与相位裕度为
+
+```math
+K_g=\frac{1}{|L(j\omega_g)|},\qquad
+\gamma=\pi+\arg L(j\omega_c).
+```
+奈奎斯特图上的负实轴交点对应 $\omega_g$；相位裕度在 $\omega_c$ 处读取。图示为单一穿越点的情形。
 
 不适合非最小相位系统，尽管相位裕度为正，但由于非最小相位系统，相位裕度可能不能直接保证稳定性。例如$GH=\dfrac{5(s-1)}{s(s+1)(s+2)}$
 
@@ -717,7 +906,16 @@ T \ddot{x}+\dot{x}=M
 ```
 
 
-![](0A6AFC7C6ED8399DE71AA5B96DF16DC4.png)
+对 $T\ddot x+\dot x=M$，令 $v=\dot x$，则
+
+```math
+\dot x=v,\qquad \dot v=\frac{M-v}{T}.
+```
+![F015](redrawn-F015.svg)
+
+- $v>0$ 时相点向右运动，$v<0$ 时向左运动。
+- $T>0$ 时速度趋向 $v=M$；$T<0$ 时偏离该直线。
+- 相平面上的轨迹互不相交；确定上下、左右方向后，即可判断箭头方向。
 
 #### 描述函数法（频域）
 
@@ -727,7 +925,7 @@ T \ddot{x}+\dot{x}=M
 
 研究输入为0的条件下的稳定性和自激振荡！
 
-![](file-20251105160705120.png)
+![非线性反馈系统](redrawn-非线性反馈系统.svg)
 
 ```math
 y=y(x), x=Asin(wt) \implies y=y(t)
@@ -796,7 +994,7 @@ N(A)=\dfrac{B_{1}}{A}+j\dfrac{A_{1}}{A}
 
 超前滞后对应PID控制器。在低频段是滞后作用，改善静态；在高频段是超前，改善动态
 
-![](file-20251212105033935.png)
+![校正网络的相位曲线](redrawn-校正网络的相位曲线.svg)
 
 四种矫正方式：前馈、反馈、串联、混合。
 校正的目的是：不稳定变稳定；稳定的动态静态性能变好
@@ -821,7 +1019,7 @@ G(s)=\dfrac{1+ T s}{1+\alpha Ts},\;0<\alpha<1
 
 存在一个超前相位最大的值 $\phi_{m}=\arcsin \dfrac{1-\alpha}{1+\alpha}$
 
-![](file-20251118103841032.png)
+![超前校正的零极点与频率特性](redrawn-超前校正的零极点与频率特性.svg)
 
 #### 频域法
 
@@ -906,7 +1104,7 @@ G(s)=\dfrac{1+ T s}{1+\alpha Ts},\;0<\alpha<1
 
 由幅值条件，求得校正装置的根轨迹增益
 
-![](file-20251118144225875.png)
+![校正结构与零极点](redrawn-校正结构与零极点.svg)
 
 
 ---
@@ -1062,9 +1260,32 @@ C
 \underset{\text{新系统}}{(T^{-1}AT,\; T^{-1}B,\; CT,\; D)}
 ```
 
-![](48D7CA8D5E9EC66149909C2A8B196FAF.png)
+作常数可逆变换 $x=Tz$，则
 
-![](DE817552A9B571A9CABBEBC55BEE8D71.png)
+```math
+T\dot z=ATz+Bu,\qquad y=CTz+Du,
+```
+即
+
+```math
+\dot z=T^{-1}ATz+T^{-1}Bu,\qquad y=CTz+Du.
+```
+
+由于
+
+```math
+sI-T^{-1}AT=T^{-1}(sI-A)T,
+```
+有
+
+```math
+\begin{aligned}
+CT(sI-T^{-1}AT)^{-1}T^{-1}B
+&=CT\left[T^{-1}(sI-A)T\right]^{-1}T^{-1}B\\
+&=C(sI-A)^{-1}B.
+\end{aligned}
+```
+因此，相似变换不改变传递函数。
 
 ##### 化为对角
 
@@ -1105,7 +1326,22 @@ T_{o}^{-1}&=L*Q_{o}
 \end{align}
 ```
 
-![](7D3DD3D25C04213C0931E84EC751D361.png)
+在 $x=T_cz$ 下，能控性矩阵满足
+
+```math
+\overline Q_c=[\,T_c^{-1}B\ \ T_c^{-1}AB\ \cdots\ \ T_c^{-1}A^{n-1}B\,]
+=T_c^{-1}Q_c.
+```
+对上述标准型，$\overline Q_c=L^{-1}$，所以
+
+```math
+T_c=Q_c\overline Q_c^{-1}=Q_cL.
+```
+同理，$x=T_oz$ 时 $\overline Q_o=Q_oT_o$。对相应的能观标准型，$\overline Q_o=L^{-1}$，从而
+
+```math
+T_o^{-1}=\overline Q_o^{-1}Q_o=LQ_o.
+```
 
 
 #### 特征分解
@@ -1430,7 +1666,7 @@ u_p(s)
 
 这是经典控制的方法，单位负反馈，串联一个补偿器$G_{c}(s)$，
 
-![](file-20251117113655239.png)
+![串联补偿反馈结构](redrawn-串联补偿反馈结构.svg)
 
 **给定**对角形式的闭环传递函数：
 
@@ -1485,7 +1721,7 @@ G_{KL}(s) = C(sI - A + BK)^{-1}BL = \begin{bmatrix} g_{11}'(s) & \cdots \\ \vdot
 
 给定被控对象$G(s)$，最简单地，即令补偿器$G_{c}(s)=G^{-1}(s)$，直接化补偿后的传递函数为单位阵，但这通常物理上不可实现（不是逆矩阵不存在）
 
-![](file-20251117121958189.png)
+![解耦补偿结构](redrawn-解耦补偿结构.svg)
 
 积分逆系统解耦，即是让补偿后的传递函数 $GG_{c}$为积分系统 
 

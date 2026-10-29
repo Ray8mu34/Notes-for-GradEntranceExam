@@ -324,7 +324,7 @@ P(|X - E(X)| \geq \epsilon) \leq \frac{D(X)}{\epsilon^2}\quad(E(X^2)<\infty) \qu
 
 不想理解就记这个：
 
-![](file-20251220214656151.png)
+设 $z_\alpha$ 满足 $P(Z>z_\alpha)=\alpha$，统计量 $Z=(\bar X-\mu_0)/(\sigma/\sqrt n)$。单侧检验中，$H_1:\mu>\mu_0$ 的拒绝域是 $Z>z_\alpha$；$H_1:\mu<\mu_0$ 的拒绝域是 $Z<-z_\alpha$。
 
 
 **希望支持的是备择假设**，但假设成立的是$H_0$。希望数据能提供足够证据拒绝 $H_0$​，从而支持 $H_1$​。但整个检验方法是建立在保护 $H_0$​的基础上的

@@ -449,7 +449,13 @@ e^x &= \sum \frac{x^n}{n!} + R_n(x) \\
 
 - 曲率圆$(x-a)^{2}+(y-b)^{2}=r^{2}$，求导可得$y^{'}$、$y^{''}$
 
-![](file-20251220230552656.png)
+曲率圆圆心 $(a,b)$ 在 $y''\ne0$ 时为
+
+```math
+a=x-\frac{y'(1+y'^2)}{y''},\qquad b=y+\frac{1+y'^2}{y''}.
+```
+
+其中导数均在所考察的曲线上点处计算。
 
 #### 极值第三充分条件
 
@@ -669,7 +675,25 @@ W_n = \begin{cases}
 	- 绕y轴旋转，但图形由y=f(x)和x轴围成 → 柱壳法更直接
 	- 绕x轴旋转，但图形由x=g(y)和y轴围成 → 柱壳法更直接
 
-![](DA217D4713EC13C14BEEF1E961F615AA.png)
+**圆盘法与圆环法**：截面垂直于旋转轴，外、内半径分别为 $R$、$r$ 时，$dV=\pi(R^2-r^2)\,ds$。
+
+![F036](redrawn-F036.svg)
+
+- 绕 $x$ 轴，曲线 $y=f(x)\geq0$ 与 $x$ 轴之间的区域：$dV=\pi f(x)^2\,dx$。
+- 绕 $y$ 轴，曲线 $x=g(y)\geq0$ 与 $y$ 轴之间的区域：$dV=\pi g(y)^2\,dy$。
+- 区域 $0\leq f(x)\leq y\leq a$ 绕 $x$ 轴：$dV=\pi[a^2-f(x)^2]\,dx$。这里是两个圆盘之差；若旋转轴改为直线 $y=a$，半径才是 $a-f(x)$。
+
+**圆柱壳法**：截面平行于旋转轴，壳的半径为 $r$、高度为 $h$、厚度为 $ds$ 时，$dV=2\pi rh\,ds$。
+
+- 绕 $y$ 轴，用竖直小条：$dV=2\pi|x|[y_{\mathrm{上}}(x)-y_{\mathrm{下}}(x)]\,dx$。
+- 绕 $x$ 轴，用水平小条：$dV=2\pi|y|[x_{\mathrm{右}}(y)-x_{\mathrm{左}}(y)]\,dy$。
+
+曲线不单调时，按高度或坐标分段，分别确定每段的内外半径。例如在旋转轴同一侧的两个不相交截面区间，绕 $y$ 轴时有
+
+```math
+dV=\pi\left[(x_{R,1}^2-x_{L,1}^2)+(x_{R,2}^2-x_{L,2}^2)\right]dy.
+```
+若旋转后的部分相互重叠，重叠体积只计一次。
 
 | 旋转轴 | 方法  | 体积公式                                  |
 | --- | --- | ------------------------------------- |
@@ -1287,7 +1311,13 @@ J = \begin{bmatrix}
 
 ##### 旋转曲面求解
 
-![](file-20251116171354476.png)
+曲线 $\Gamma$ 绕过 $M_0$、方向向量为 $\tau$ 的直线旋转。取 $M_1\in\Gamma$，同一纬圆上的点 $P$ 满足
+
+```math
+\overrightarrow{M_1P}\cdot\tau=0,\qquad |\overrightarrow{M_0P}|=|\overrightarrow{M_0M_1}|.
+```
+
+![旋转曲面](redrawn-旋转曲面.svg)
 
 ##### 锥面求解
 
@@ -1299,7 +1329,26 @@ J = \begin{bmatrix}
 
 给定顶点和准线，就可以确定锥面的方程。根据准线的不同，锥面分为：圆锥、椭圆锥、抛物锥……
 
-![](4E308F074C35DB759AD795F0D994EB4E.png)
+锥面由一条过定点 $M(a,b,c)$ 的直母线沿准线 $\Gamma$ 运动而成。取准线上的点 $P_0(x_0,y_0,z_0)$，锥面上同一母线上的点 $P(x,y,z)$ 满足 $\overrightarrow{MP}\parallel\overrightarrow{MP_0}$。
+
+![F038](redrawn-F038.svg)
+
+若准线由 $F(x_0,y_0,z_0)=0$、$G(x_0,y_0,z_0)=0$ 给出，可写成
+
+```math
+\begin{cases}
+x=a+t(x_0-a),\\
+y=b+t(y_0-b),\\
+z=c+t(z_0-c),\\
+F(x_0,y_0,z_0)=0,\\
+G(x_0,y_0,z_0)=0.
+\end{cases}
+```
+消去 $x_0,y_0,z_0,t$ 即得锥面方程。各分母非零时，母线条件也可写为
+
+```math
+\frac{x-a}{x_0-a}=\frac{y-b}{y_0-b}=\frac{z-c}{z_0-c}.
+```
 
 ##### 投影问题
 
@@ -1395,7 +1444,25 @@ J = \begin{bmatrix}
 
 尤其注意极坐标下的两种积分次序
 
-![](8CC50424FE447F01DA9B334A7EFBD3E0.png)
+变换积分次序时，先固定外层变量，沿内层变量方向扫描区域。极坐标下既可画实际平面区域，也可画 $(\theta,r)$ 平面上的积分区域。
+
+以 $a>0$、$0\leq\theta\leq\pi/2$、$0\leq r\leq a\sqrt{\sin2\theta}$ 为例：
+
+![F039](redrawn-F039.svg)
+
+固定 $r\in[0,a]$，由 $\sin2\theta\geq r^2/a^2$ 得
+
+```math
+\frac12\arcsin\frac{r^2}{a^2}\leq\theta
+\leq\frac\pi2-\frac12\arcsin\frac{r^2}{a^2}.
+```
+因此
+
+```math
+\int_0^{\pi/2}\int_0^{a\sqrt{\sin2\theta}} f(r,\theta)\,r\,dr\,d\theta
+=\int_0^a\int_{\frac12\arcsin(r^2/a^2)}^{\frac\pi2-\frac12\arcsin(r^2/a^2)}
+f(r,\theta)\,r\,d\theta\,dr.
+```
 
 #### 重积分坐标变换
 
@@ -1588,46 +1655,9 @@ d\vec{S} = dy\,dz\,\mathbf{i} + dz\,dx\,\mathbf{j} + dx\,dy\,\mathbf{k} = (\cos\
 
 存在奇点时，补曲面消除奇点，分成两部分计算。补面的方向是令通量朝外侧的方向
 
-![](file-20251218211540918.png)
+![第二类曲线积分方法](redrawn-第二类曲线积分方法.svg)
 
-```mermaid
-flowchart TD
-    A["计算第二类曲线积分<br>∮_L Pdx+Qdy+Rdz"] --> B{"方法选择"}
-    
-    B --> C["方法一：直接参数化"]
-    C --> C1["将曲线L参数化为 r(t)=&lt;x(t),y(t),z(t)&gt;, t∈[a,b]"]
-    C1 --> C2["直接代入计算<br>∫_a^b [P·x'(t)+Q·y'(t)+R·z'(t)]dt"]
-    C2 --> R["得到结果"]
-    
-    B --> D["方法二：Stokes公式<br>∮_L = ∬_Σ rotF·dS"]
-    D --> E["化为第二类曲面积分<br>∬_Σ (∂R/∂y-∂Q/∂z)dydz + (∂P/∂z-∂R/∂x)dzdx + (∂Q/∂x-∂P/∂y)dxdy"]
-    
-    E --> F{"曲面积分计算方法"}
-    
-    F --> G["方法①：按定义分项投影"]
-    G --> G1["分别投影到三个坐标面"]
-    G1 --> G2["确定各面正负号（外侧为正）"]
-    G2 --> G3["计算三个二重积分后求和"]
-    G3 --> R
-    
-    F --> H["方法②：补面用高斯公式"]
-    H --> H1["补上曲面Σ'使Σ+Σ'成为封闭曲面"]
-    H1 --> H2["应用高斯公式<br>∯_(Σ+Σ') = ∭_Ω div(rotF)dV=0"]
-    H1 --> H3["计算补面上的积分∬_Σ'"]
-    H3 --> H4["原积分= -∬_Σ'"]
-    H4 --> R
-    
-    F --> I["方法③：化为第一类曲面积分"]
-    I --> I1["∬_Σ rotF·dS = ∬_Σ rotF·n dS"]
-    I1 --> I2["计算法向量n和<br>rotF·n的表达式"]
-    I2 --> I3["选择合适投影面<br>（通常投影到Oxy）"]
-    I3 --> I4["计算二重积分<br>∬_D rotF·n·|secγ|dxdy"]
-    I4 --> R
-    
-    style A fill:#e1f5fe
-    style D fill:#f3e5f5
-    style R fill:#e8f5e8
-```
+
 
 #### 对称性
 
